@@ -16,7 +16,7 @@ export function ContactHero() {
           <div>
             <p className="text-lg leading-8 text-[var(--muted)]">
               Ask for current availability, inspection dates, title guidance,
-              pricing, and the best estate phase for your budget.
+              pricing, and the best land option for your budget.
             </p>
             <a
               href={createWhatsAppUrl(

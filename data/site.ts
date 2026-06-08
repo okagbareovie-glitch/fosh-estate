@@ -19,11 +19,12 @@ export type ListingStatus = "Available" | "Selling Fast" | "New Launch";
 export type Listing = {
   id: string;
   title: string;
-  phase: string;
   location: string;
+  address: string;
+  state: string;
   price: number;
   status: ListingStatus;
-  type: "Land";
+  type: "Land" | "Property";
   description: string;
   image: {
     src: string;
@@ -77,8 +78,9 @@ export const featuredListings: Listing[] = [
   {
     id: "fosh-phase-1",
     title: "Fosh Estate Phase 1",
-    phase: "Phase 1",
-    location: "Ayetoro",
+    location: "Ayetoro, Ogun",
+    address: "Ayetoro",
+    state: "Ogun",
     price: 6000000,
     status: "Available",
     type: "Land",
@@ -113,8 +115,9 @@ export const featuredListings: Listing[] = [
   {
     id: "fosh-phase-2",
     title: "Fosh Estate Phase 2",
-    phase: "Phase 2",
-    location: "Ayetoro",
+    location: "Ayetoro, Ogun",
+    address: "Ayetoro",
+    state: "Ogun",
     price: 4000000,
     status: "Selling Fast",
     type: "Land",
@@ -149,8 +152,9 @@ export const featuredListings: Listing[] = [
   {
     id: "fosh-phase-3",
     title: "Fosh Estate Phase 3",
-    phase: "Phase 3",
-    location: "Ayetoro",
+    location: "Ayetoro, Ogun",
+    address: "Ayetoro",
+    state: "Ogun",
     price: 4000000,
     status: "Available",
     type: "Land",
@@ -185,8 +189,9 @@ export const featuredListings: Listing[] = [
   {
     id: "fosh-phase-4",
     title: "Fosh Estate Phase 4",
-    phase: "Phase 4",
-    location: "Ashipa",
+    location: "Ashipa, Ogun",
+    address: "Ashipa",
+    state: "Ogun",
     price: 600000,
     status: "New Launch",
     type: "Land",
@@ -221,8 +226,9 @@ export const featuredListings: Listing[] = [
   {
     id: "fosh-phase-5",
     title: "Fosh Estate Phase 5",
-    phase: "Phase 5",
-    location: "Ayetoro",
+    location: "Ayetoro, Ogun",
+    address: "Ayetoro",
+    state: "Ogun",
     price: 4000000,
     status: "Available",
     type: "Land",
@@ -264,7 +270,7 @@ export const trustItems: IconItem[] = [
   },
   {
     title: "Strategic locations",
-    description: "Estate phases positioned across active growth corridors.",
+    description: "Land opportunities positioned across active growth corridors.",
     icon: MapPinned,
   },
   {
@@ -339,7 +345,7 @@ export const serviceItems: IconItem[] = [
   },
 ];
 
-export const operatingAreas = ["Lagos", "Port Harcourt", "Abuja"] as const;
+export const operatingAreas = ["Lagos", "Ogun", "Rivers", "FCT", "Enugu"] as const;
 
 export type MapLocation = {
   id: string;
@@ -356,15 +362,27 @@ export const mapLocations: MapLocation[] = [
     coordinates: [3.3792, 6.5244],
   },
   {
-    id: "port-harcourt",
-    name: "Port Harcourt",
+    id: "rivers",
+    name: "Rivers",
     summary: "Southern growth market for land and property opportunities.",
     coordinates: [7.0498, 4.8156],
   },
   {
-    id: "abuja",
-    name: "Abuja",
+    id: "fct",
+    name: "FCT",
     summary: "Federal capital market for future property expansion.",
     coordinates: [7.3986, 9.0765],
+  },
+  {
+    id: "ogun",
+    name: "Ogun",
+    summary: "Current market for active estate land opportunities.",
+    coordinates: [3.35, 7.0],
+  },
+  {
+    id: "enugu",
+    name: "Enugu",
+    summary: "Emerging eastern market for future land opportunities.",
+    coordinates: [7.4988, 6.4483],
   },
 ];

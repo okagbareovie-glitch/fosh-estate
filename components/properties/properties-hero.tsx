@@ -1,10 +1,20 @@
 import { ArrowRight, BadgeCheck, MapPinned, Search } from "lucide-react";
-import { featuredListings } from "@/data/site";
+import type { Listing } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 
-const lowestPrice = Math.min(...featuredListings.map((listing) => listing.price));
+export function PropertiesHero({ listings }: { listings: Listing[] }) {
+  const lowestPrice =
+    listings.length > 0
+      ? Math.min(...listings.map((listing) => listing.price))
+      : 0;
+  const states = Array.from(
+    new Set(listings.map((listing) => listing.state).filter(Boolean))
+  ).sort((firstLocation, secondLocation) =>
+    firstLocation.localeCompare(secondLocation)
+  );
+  const stateSummary =
+    states.length > 0 ? formatStateSummary(states) : "States pending";
 
-export function PropertiesHero() {
   return (
     <section className="relative overflow-hidden bg-[var(--background)]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
@@ -15,11 +25,11 @@ export function PropertiesHero() {
         <div className="mt-5 grid gap-9 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>
             <h1 className="max-w-5xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl lg:text-7xl">
-              Compare estate phases before you book an inspection.
+              Compare available land before you book an inspection.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              Browse current Fosh Estate land opportunities by location,
-              budget, and availability. Each phase is structured for clear
+              Browse current Fosh Estate land opportunities by state, address,
+              budget, and availability. Each listing is structured for clear
               enquiry and direct inspection follow-up.
             </p>
           </div>
@@ -32,9 +42,17 @@ export function PropertiesHero() {
               </p>
             </div>
             <div className="grid gap-4 py-5">
-              <HeroFact icon={BadgeCheck} label="Current phases" value="5 estate phases" />
+              <HeroFact
+                icon={BadgeCheck}
+                label="Current listings"
+                value={`${listings.length} land options`}
+              />
               <HeroFact icon={MapPinned} label="Starting from" value={formatNaira(lowestPrice)} />
-              <HeroFact icon={MapPinned} label="Current locations" value="Ayetoro and Ashipa" />
+              <HeroFact
+                icon={MapPinned}
+                label="Current states"
+                value={stateSummary}
+              />
             </div>
             <a
               href={createWhatsAppUrl(
@@ -50,6 +68,14 @@ export function PropertiesHero() {
       </div>
     </section>
   );
+}
+
+function formatStateSummary(states: string[]) {
+  if (states.length <= 2) {
+    return states.join(" and ");
+  }
+
+  return `${states.slice(0, 2).join(", ")} +${states.length - 2} more`;
 }
 
 function HeroFact({

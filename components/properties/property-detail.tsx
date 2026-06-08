@@ -56,12 +56,10 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
                 <MapPin aria-hidden size={18} />
                 {listing.location}
               </span>
-              <span className="text-[var(--line-strong)]">/</span>
-              <span>{listing.phase}</span>
             </div>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
               {listing.description} This detail page gives buyers a clearer
-              view of the phase, the investment case, expected amenities, and
+              view of the land, the investment case, expected amenities, and
               the next step for inspection.
             </p>
           </div>
@@ -72,8 +70,8 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
               {formatNaira(listing.price)}
             </p>
             <div className="mt-5 grid gap-3 border-y border-[var(--line)] py-5">
-              <Fact label="Location" value={listing.location} />
-              <Fact label="Phase" value={listing.phase} />
+              <Fact label="Address / area" value={listing.address} />
+              <Fact label="State" value={listing.state} />
               <Fact label="Current status" value={listing.status} />
               <Fact label="Property type" value={listing.type} />
             </div>
@@ -117,7 +115,7 @@ export function PropertyDetailSections({ listing }: { listing: Listing }) {
         <div className="container-page grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              Why this phase
+              Why this land
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
               Built for buyers who want clarity before commitment.

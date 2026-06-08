@@ -4,12 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Filter, MapPin, RotateCcw, Search, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
-import { featuredListings } from "@/data/site";
+import type { Listing } from "@/data/site";
 import type { ListingStatus } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 
 type BudgetFilter = "all" | "starter" | "mid" | "premium";
-type LocationFilter = "all" | "Ayetoro" | "Ashipa";
 type StatusFilter = "all" | ListingStatus;
 
 const budgetLabels: Record<BudgetFilter, string> = {
@@ -26,22 +25,41 @@ function matchesBudget(price: number, budget: BudgetFilter) {
   return true;
 }
 
-export function PropertiesListings() {
+export function PropertiesListings({ listings }: { listings: Listing[] }) {
   const [query, setQuery] = useState("");
-  const [location, setLocation] = useState<LocationFilter>("all");
+  const [location, setLocation] = useState("all");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [budget, setBudget] = useState<BudgetFilter>("all");
+
+  const locationOptions = useMemo(() => {
+    const locations = Array.from(
+      new Set(
+        listings
+          .map((listing) => listing.state.trim())
+          .filter((listingState) => listingState.length > 0)
+      )
+    ).sort((firstLocation, secondLocation) =>
+      firstLocation.localeCompare(secondLocation)
+    );
+
+    return [
+      ["all", "All states"] as [string, string],
+      ...locations.map(
+        (listingState): [string, string] => [listingState, listingState]
+      ),
+    ];
+  }, [listings]);
 
   const filteredListings = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return featuredListings.filter((listing) => {
+    return listings.filter((listing) => {
       const matchesQuery =
         normalizedQuery.length === 0 ||
-        `${listing.title} ${listing.phase} ${listing.location} ${listing.description}`
+        `${listing.title} ${listing.location} ${listing.description}`
           .toLowerCase()
           .includes(normalizedQuery);
-      const matchesLocation = location === "all" || listing.location === location;
+      const matchesLocation = location === "all" || listing.state === location;
       const matchesStatus = status === "all" || listing.status === status;
 
       return (
@@ -51,7 +69,7 @@ export function PropertiesListings() {
         matchesBudget(listing.price, budget)
       );
     });
-  }, [budget, location, query, status]);
+  }, [budget, listings, location, query, status]);
 
   function resetFilters() {
     setQuery("");
@@ -88,20 +106,16 @@ export function PropertiesListings() {
                       value={query}
                       onChange={(event) => setQuery(event.target.value)}
                       className="min-h-12 w-full rounded-md border border-[var(--line-strong)] bg-white py-3 pl-10 pr-3 text-base text-[var(--ink)] placeholder:text-slate-400 focus:border-[var(--blue)]"
-                      placeholder="Search phase or location"
+                      placeholder="Search listing, address, or state"
                     />
                   </span>
                 </label>
 
                 <FilterSelect
-                  label="Location"
+                  label="State"
                   value={location}
-                  onChange={(value) => setLocation(value as LocationFilter)}
-                  options={[
-                    ["all", "All locations"],
-                    ["Ayetoro", "Ayetoro"],
-                    ["Ashipa", "Ashipa"],
-                  ]}
+                  onChange={setLocation}
+                  options={locationOptions}
                 />
 
                 <FilterSelect
@@ -142,7 +156,7 @@ export function PropertiesListings() {
                   {filteredListings.length} matching listings
                 </p>
                 <h2 className="mt-2 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)]">
-                  Current estate phases
+                  Current land listings
                 </h2>
               </div>
               <p className="max-w-md text-sm leading-6 text-[var(--muted)]">
@@ -194,7 +208,7 @@ export function PropertiesListings() {
                       </p>
 
                       <div className="mt-5 grid gap-2 border-y border-[var(--line)] py-4 sm:grid-cols-3">
-                        <PropertySpec label="Phase" value={listing.phase} />
+                        <PropertySpec label="State" value={listing.state} />
                         <PropertySpec label="Title" value="Secure" />
                         <PropertySpec label="Use" value="Live / Invest" />
                       </div>

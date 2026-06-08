@@ -1,18 +1,41 @@
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, MapPinned } from "lucide-react";
-import { featuredListings, operatingAreas } from "@/data/site";
+import type { Listing } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 
-const lowestPrice = Math.min(...featuredListings.map((listing) => listing.price));
+const MAX_VISIBLE_STATES = 4;
 
-export function HeroSection() {
+export function HeroSection({ listings }: { listings: Listing[] }) {
+  const lowestPrice =
+    listings.length > 0
+      ? Math.min(...listings.map((listing) => listing.price))
+      : 0;
+  const activeStates = Array.from(
+    new Set(
+      listings
+        .map((listing) => listing.state.trim())
+        .filter(
+          (state) =>
+            state.length > 0 &&
+            state.toLowerCase() !== "location pending" &&
+            state.toLowerCase() !== "states pending"
+        )
+    )
+  ).sort((firstState, secondState) => firstState.localeCompare(secondState));
+  const visibleStates = activeStates.slice(0, MAX_VISIBLE_STATES);
+  const hiddenStateCount = Math.max(activeStates.length - visibleStates.length, 0);
+  const eyebrow =
+    activeStates.length > 0
+      ? `Land ownership across ${formatStateList(activeStates)}`
+      : "Secure land ownership opportunities";
+
   return (
     <section className="relative overflow-hidden bg-[var(--background)]">
       <div className="absolute inset-x-0 top-0 h-64 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
       <div className="container-page relative grid gap-10 py-12 md:py-16 lg:grid-cols-[1fr_0.92fr] lg:gap-14 lg:py-20">
         <div className="flex flex-col justify-center">
           <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-            Land ownership across Lagos, Port Harcourt, and Abuja
+            {eyebrow}
           </p>
           <h1 className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl lg:text-7xl">
             Building Dreams. Creating Legacy.
@@ -37,13 +60,13 @@ export function HeroSection() {
               href="#featured-listings"
               className="inline-flex min-h-14 items-center justify-center rounded-md border border-[var(--line-strong)] bg-white px-6 text-base font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"
             >
-              View estate phases
+              View available land
             </a>
           </div>
 
           <div className="mt-10 grid gap-4 border-y border-[var(--line)] py-6 sm:grid-cols-3">
             <HeroStat label="Starting from" value={formatNaira(lowestPrice)} />
-            <HeroStat label="Current phases" value="5" />
+            <HeroStat label="Current listings" value={String(listings.length)} />
             <HeroStat label="Focus" value="Secure land" />
           </div>
         </div>
@@ -65,25 +88,47 @@ export function HeroSection() {
                 Secure. Prime. Profitable.
               </div>
               <p className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
-                Estate phases designed for ownership confidence.
+                Land options designed for ownership confidence.
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {operatingAreas.map((area) => (
-                  <span
-                    key={area}
-                    className="inline-flex items-center gap-2 rounded-sm border border-[var(--line)] bg-[var(--surface-soft)] px-3 py-2 text-sm font-medium text-[var(--navy)]"
-                  >
-                    <MapPinned aria-hidden size={15} />
-                    {area}
-                  </span>
-                ))}
-              </div>
+              {visibleStates.length > 0 ? (
+                <div className="mt-4 flex max-w-full flex-wrap gap-2">
+                  {visibleStates.map((state) => (
+                    <span
+                      key={state}
+                      className="inline-flex min-h-10 items-center gap-2 rounded-sm border border-[var(--line)] bg-[var(--surface-soft)] px-3 text-sm font-medium text-[var(--navy)]"
+                    >
+                      <MapPinned aria-hidden size={15} />
+                      {state}
+                    </span>
+                  ))}
+                  {hiddenStateCount > 0 ? (
+                    <span className="inline-flex min-h-10 items-center rounded-sm border border-[var(--line)] bg-white px-3 text-sm font-semibold text-[var(--blue)]">
+                      +{hiddenStateCount} more
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+function formatStateList(states: string[]) {
+  const visibleStates = states.slice(0, 3);
+
+  if (visibleStates.length === 1) return visibleStates[0];
+  if (visibleStates.length === 2) return visibleStates.join(" and ");
+
+  const summary = `${visibleStates.slice(0, 2).join(", ")} and ${
+    visibleStates[2]
+  }`;
+
+  return states.length > visibleStates.length
+    ? `${summary} +${states.length - visibleStates.length} more`
+    : summary;
 }
 
 function HeroStat({ label, value }: { label: string; value: string }) {

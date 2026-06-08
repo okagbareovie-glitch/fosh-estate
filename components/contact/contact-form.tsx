@@ -83,7 +83,7 @@ export function ContactForm() {
             required
             rows={5}
             className="mt-2 w-full resize-y rounded-md border border-[var(--line-strong)] bg-white px-4 py-3 text-base leading-7 text-[var(--ink)] transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--blue)]"
-            placeholder="Example: I want details about Fosh Estate Phase 4 and inspection dates."
+            placeholder="Example: I want details about available land in Ogun and inspection dates."
           />
         </div>
       </div>

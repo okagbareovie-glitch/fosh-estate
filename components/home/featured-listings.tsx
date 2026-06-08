@@ -1,16 +1,18 @@
 import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
-import { featuredListings } from "@/data/site";
+import type { Listing } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 
-export function FeaturedListings() {
+export function FeaturedListings({ listings }: { listings: Listing[] }) {
+  const visibleListings = listings.slice(0, 5);
+
   return (
     <section id="featured-listings" className="section-y bg-[var(--background)]">
       <div className="container-page">
         <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              Current estate phases
+              Current land opportunities
             </p>
             <h2 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
               Land options with clear entry points.
@@ -18,7 +20,7 @@ export function FeaturedListings() {
           </div>
           <a
             href={createWhatsAppUrl(
-              "Hello Fosh Estate, please send me the current estate phase details."
+              "Hello Fosh Estate, please send me the current land price list and inspection details."
             )}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[var(--line-strong)] bg-white px-5 text-sm font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"
           >
@@ -28,7 +30,7 @@ export function FeaturedListings() {
         </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {featuredListings.map((listing) => (
+          {visibleListings.map((listing) => (
             <article
               key={listing.id}
               className="flex min-w-0 flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-white"
@@ -65,7 +67,7 @@ export function FeaturedListings() {
                   )}
                   className="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--navy)] px-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
                 >
-                  Ask about {listing.phase}
+                  Ask about this land
                 </a>
               </div>
             </article>

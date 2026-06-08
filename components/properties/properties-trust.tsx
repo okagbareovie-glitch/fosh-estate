@@ -19,7 +19,7 @@ const trustSteps = [
   },
   {
     title: "Plan ownership",
-    copy: "Choose the phase that matches your budget, family, or investment goal.",
+    copy: "Choose the land option that matches your budget, family, or investment goal.",
     icon: Building2,
   },
 ];
@@ -43,7 +43,7 @@ export function PropertiesTrust() {
             </p>
             <a
               href={createWhatsAppUrl(
-                "Hello Fosh Estate, I want guidance choosing the best estate phase for my budget."
+                "Hello Fosh Estate, I want guidance choosing the best land option for my budget."
               )}
               className="mt-8 inline-flex min-h-13 items-center justify-center rounded-md bg-[var(--navy)] px-6 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
             >

@@ -5,7 +5,7 @@ const storyPoints = [
   },
   {
     title: "The approach",
-    copy: "Fosh Estate simplifies the journey by presenting focused estate phases, direct enquiry support, inspection guidance, and a clear path from interest to allocation.",
+    copy: "Fosh Estate simplifies the journey by presenting focused land opportunities, direct enquiry support, inspection guidance, and a clear path from interest to allocation.",
   },
   {
     title: "The promise",

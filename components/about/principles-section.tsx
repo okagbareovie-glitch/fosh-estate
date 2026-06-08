@@ -8,7 +8,7 @@ const principles = [
   },
   {
     title: "Value-led locations",
-    copy: "Every estate phase should make sense for access, growth potential, and long-term demand.",
+    copy: "Every land listing should make sense for access, growth potential, and long-term demand.",
     icon: ChartNoAxesCombined,
   },
   {

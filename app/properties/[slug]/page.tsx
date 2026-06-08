@@ -5,8 +5,11 @@ import {
   PropertyDetailSections,
 } from "@/components/properties/property-detail";
 import { SiteFooter, SiteHeader } from "@/components/home";
-import { featuredListings } from "@/data/site";
 import { formatNaira } from "@/lib/format";
+import {
+  getListingBySlug,
+  getListingSlugs,
+} from "@/sanity/lib/listings";
 
 type PropertyDetailPageProps = {
   params: Promise<{
@@ -14,17 +17,17 @@ type PropertyDetailPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return featuredListings.map((listing) => ({
-    slug: listing.slug,
-  }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  return getListingSlugs();
 }
 
 export async function generateMetadata({
   params,
 }: PropertyDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const listing = featuredListings.find((item) => item.slug === slug);
+  const listing = await getListingBySlug(slug);
 
   if (!listing) {
     return {
@@ -44,7 +47,7 @@ export default async function PropertyDetailPage({
   params,
 }: PropertyDetailPageProps) {
   const { slug } = await params;
-  const listing = featuredListings.find((item) => item.slug === slug);
+  const listing = await getListingBySlug(slug);
 
   if (!listing) {
     notFound();

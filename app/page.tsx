@@ -9,15 +9,20 @@ import {
   SiteHeader,
   TrustStrip,
 } from "@/components/home";
+import { getFeaturedListings } from "@/sanity/lib/listings";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const listings = await getFeaturedListings();
+
   return (
     <>
       <SiteHeader />
       <main>
-        <HeroSection />
+        <HeroSection listings={listings} />
         <TrustStrip />
-        <FeaturedListings />
+        <FeaturedListings listings={listings} />
         <AmenitiesSection />
         <AreasSection />
         <ServicesSection />

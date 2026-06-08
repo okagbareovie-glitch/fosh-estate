@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import { PropertiesHero, PropertiesListings, PropertiesTrust } from "@/components/properties";
 import { SiteFooter, SiteHeader } from "@/components/home";
+import { getAllListings } from "@/sanity/lib/listings";
 
 export const metadata: Metadata = {
   title: "Properties",
   description:
-    "Explore current Fosh Estate land phases, prices, locations, amenities, and inspection enquiry options.",
+    "Explore current Fosh Estate land listings, prices, states, amenities, and inspection enquiry options.",
 };
 
-export default function PropertiesPage() {
+export const revalidate = 60;
+
+export default async function PropertiesPage() {
+  const listings = await getAllListings();
+
   return (
     <>
       <SiteHeader />
       <main>
-        <PropertiesHero />
-        <PropertiesListings />
+        <PropertiesHero listings={listings} />
+        <PropertiesListings listings={listings} />
         <PropertiesTrust />
       </main>
       <SiteFooter />

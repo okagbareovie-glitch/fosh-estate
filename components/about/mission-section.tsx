@@ -13,7 +13,7 @@ const missionItems = [
   },
   {
     title: "Footprint",
-    copy: "Focused on growth markets across Lagos, Port Harcourt, and Abuja, with current estate phases in Ayetoro and Ashipa.",
+    copy: "Focused on growth markets across Lagos, Rivers, FCT, Ogun, and other selected states as the property catalogue expands.",
     icon: MapPinned,
   },
 ];

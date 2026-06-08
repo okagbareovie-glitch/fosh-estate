@@ -6,15 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sanity:seed": "node scripts/seed-sanity.mjs"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
     "@tailwindcss/postcss": "latest",
     "lucide-react": "latest",
     "mapbox-gl": "^3.24.0",
     "next": "latest",
+    "next-sanity": "^13.0.11",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sanity": "^5.30.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "latest",

@@ -12,7 +12,7 @@ export function FinalCta() {
               Inspection and enquiry
             </p>
             <h2 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight md:text-5xl">
-              Start with the estate phase that matches your budget.
+              Start with the land option that matches your budget.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#d4e3ff]">
               Ask for available plots, payment details, inspection dates, and
