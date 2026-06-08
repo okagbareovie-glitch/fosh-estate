@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1100" viewBox="0 0 1000 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Fosh Estate operating map placeholder</title>
+  <desc id="desc">A clean abstract map showing estate growth corridors and planned plots.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f9f9ff"/>
+      <stop offset="0.52" stop-color="#e7eeff"/>
+      <stop offset="1" stop-color="#cfdaf1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#111c2c" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="1100" fill="url(#bg)"/>
+  <path d="M-80 930 C160 780 300 730 445 560 C570 410 705 335 1080 200" fill="none" stroke="#fff" stroke-width="78" stroke-linecap="round"/>
+  <path d="M-120 280 C95 320 235 400 390 485 C560 580 710 660 1070 725" fill="none" stroke="#fff" stroke-width="54" stroke-linecap="round" opacity="0.84"/>
+  <g filter="url(#shadow)" fill="#ffffff" opacity="0.93">
+    <rect x="95" y="120" width="230" height="165"/>
+    <rect x="405" y="145" width="210" height="145"/>
+    <rect x="645" y="360" width="245" height="180"/>
+    <rect x="145" y="560" width="260" height="185"/>
+    <rect x="495" y="735" width="270" height="175"/>
+  </g>
+  <g fill="none" stroke="#001f3f" stroke-width="2.5" opacity="0.3">
+    <path d="M125 175 H300 M125 230 H300 M205 130 V275"/>
+    <path d="M430 196 H590 M505 155 V280"/>
+    <path d="M675 425 H865 M675 485 H865 M760 370 V530"/>
+    <path d="M175 630 H375 M175 690 H375 M270 575 V735"/>
+    <path d="M525 795 H735 M525 852 H735 M620 750 V900"/>
+  </g>
+  <circle cx="770" cy="190" r="90" fill="#005eb2" opacity="0.16"/>
+  <circle cx="770" cy="190" r="34" fill="#005eb2" opacity="0.42"/>
+  <circle cx="210" cy="880" r="105" fill="#0f7a52" opacity="0.18"/>
+  <circle cx="210" cy="880" r="38" fill="#0f7a52" opacity="0.38"/>
+</svg>

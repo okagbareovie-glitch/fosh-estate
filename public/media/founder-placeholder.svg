@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Founder portrait placeholder</title>
+  <desc id="desc">A refined placeholder for the founder's professional portrait.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e7eeff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#001f3f"/>
+      <stop offset="1" stop-color="#000613"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1100" fill="url(#bg)"/>
+  <circle cx="450" cy="350" r="140" fill="#cfdaf1"/>
+  <path d="M245 1020 C260 775 330 610 450 610 C570 610 640 775 655 1020 Z" fill="url(#suit)"/>
+  <path d="M345 1020 L450 650 L555 1020 Z" fill="#ffffff" opacity="0.95"/>
+  <path d="M390 700 L450 780 L510 700" fill="none" stroke="#005eb2" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="450" cy="345" r="102" fill="#f3f5fa"/>
+  <path d="M325 332 C350 230 420 190 500 228 C558 256 586 310 574 370 C535 330 488 310 426 315 C385 318 355 326 325 332 Z" fill="#001f3f"/>
+  <path d="M318 1020 H682" stroke="#005eb2" stroke-width="6" opacity="0.35"/>
+  <rect x="90" y="90" width="720" height="920" fill="none" stroke="#001f3f" stroke-opacity="0.12" stroke-width="2"/>
+</svg>

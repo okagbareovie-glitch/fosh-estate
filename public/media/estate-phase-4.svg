@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="675" viewBox="0 0 900 675" role="img" aria-labelledby="title">
+  <title id="title">Fosh Estate Phase 4 land placeholder</title>
+  <rect width="900" height="675" fill="#fffaf0"/>
+  <path d="M0 430 C130 350 245 390 390 310 C545 225 695 245 900 155 V675 H0 Z" fill="#f0f3ff"/>
+  <path d="M-60 190 C180 250 280 330 455 355 C620 380 725 470 960 545" fill="none" stroke="#ffffff" stroke-width="62" stroke-linecap="round"/>
+  <g fill="#ffffff" opacity="0.94">
+    <rect x="95" y="320" width="195" height="140"/>
+    <rect x="335" y="420" width="220" height="135"/>
+    <rect x="610" y="250" width="205" height="145"/>
+  </g>
+  <g stroke="#b7791f" stroke-width="2.5" opacity="0.42">
+    <path d="M118 370 H270 M118 420 H270 M185 330 V452"/>
+    <path d="M360 468 H535 M435 430 V545"/>
+    <path d="M632 302 H795 M700 260 V385"/>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1400" viewBox="0 0 1200 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Premium estate land planning visual</title>
+  <desc id="desc">A refined aerial-style land planning placeholder with roads, plots, greenery, and water.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d8e3fa"/>
+      <stop offset="0.46" stop-color="#f9f9ff"/>
+      <stop offset="1" stop-color="#afc8f0"/>
+    </linearGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4e8"/>
+      <stop offset="1" stop-color="#d7e5cc"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#111c2c" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1400" fill="url(#sky)"/>
+  <path d="M0 940 C220 820 368 925 575 800 C760 688 890 750 1200 600 L1200 1400 L0 1400 Z" fill="url(#land)"/>
+  <path d="M-50 1180 C245 910 445 875 665 655 C835 485 1030 330 1270 130" fill="none" stroke="#ffffff" stroke-width="95" stroke-linecap="round" opacity="0.96"/>
+  <path d="M-50 1180 C245 910 445 875 665 655 C835 485 1030 330 1270 130" fill="none" stroke="#c4c6cf" stroke-width="2" stroke-dasharray="14 18" opacity="0.9"/>
+  <g filter="url(#soft)">
+    <rect x="120" y="190" width="310" height="210" fill="#ffffff" opacity="0.9"/>
+    <rect x="462" y="290" width="250" height="180" fill="#ffffff" opacity="0.86"/>
+    <rect x="805" y="190" width="260" height="230" fill="#ffffff" opacity="0.88"/>
+    <rect x="685" y="545" width="305" height="210" fill="#ffffff" opacity="0.88"/>
+    <rect x="180" y="650" width="285" height="205" fill="#ffffff" opacity="0.9"/>
+    <rect x="530" y="925" width="340" height="225" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g fill="none" stroke="#001f3f" stroke-width="3" opacity="0.28">
+    <path d="M145 255 H405 M145 320 H405 M230 200 V390 M322 200 V390"/>
+    <path d="M485 345 H690 M485 410 H690 M570 300 V460"/>
+    <path d="M830 260 H1045 M830 340 H1045 M910 205 V405 M990 205 V405"/>
+    <path d="M710 620 H965 M710 690 H965 M792 560 V740 M885 560 V740"/>
+    <path d="M205 720 H440 M205 795 H440 M292 665 V840"/>
+    <path d="M560 995 H845 M560 1070 H845 M650 940 V1135 M748 940 V1135"/>
+  </g>
+  <circle cx="155" cy="1075" r="78" fill="#0f7a52" opacity="0.34"/>
+  <circle cx="1035" cy="790" r="105" fill="#005eb2" opacity="0.16"/>
+  <circle cx="1035" cy="790" r="68" fill="#005eb2" opacity="0.2"/>
+  <path d="M0 0 H1200 V1400 H0 Z" fill="none" stroke="#001f3f" stroke-opacity="0.14" stroke-width="2"/>
+</svg>

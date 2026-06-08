@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9f9ff;
+  --surface: #ffffff;
+  --surface-soft: #f0f3ff;
+  --surface-blue: #e7eeff;
+  --ink: #111c2c;
+  --muted: #43474e;
+  --navy: #000613;
+  --navy-2: #001f3f;
+  --blue: #005eb2;
+  --blue-bright: #0074d9;
+  --line: #d9dfeb;
+  --line-strong: #c4c6cf;
+  --success: #0f7a52;
+  --gold: #b7791f;
+  --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk", "Aptos Display", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Geist", "Aptos", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--ink);
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk", "Hanken Grotesk Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+body::selection {
+  background: var(--blue);
+  color: white;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue-bright), white 18%);
+  outline-offset: 3px;
+}
+
+.container-page {
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
+}
+
+.section-y {
+  padding-block: clamp(64px, 8vw, 112px);
+}
+
+.surface-shadow {
+  box-shadow: 0 20px 50px rgb(17 28 44 / 6%);
+}
+
+.image-rendering-clean {
+  image-rendering: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
