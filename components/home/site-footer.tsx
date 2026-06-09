@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Camera, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { createTelUrl } from "@/lib/format";
@@ -9,20 +10,13 @@ export function SiteFooter() {
       <div className="container-page grid gap-10 py-10 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <span
-              aria-hidden
-              className="grid h-10 w-10 place-items-center rounded-md bg-[var(--navy)] font-[family-name:var(--font-display)] text-base font-semibold text-white"
-            >
-              FE
-            </span>
-            <span>
-              <span className="block font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--navy)]">
-                {siteConfig.name}
-              </span>
-              <span className="text-sm text-[var(--muted)]">
-                {siteConfig.tagline}
-              </span>
-            </span>
+            <Image
+              src={siteConfig.logo}
+              alt="Fosh Estate logo"
+              width={180}
+              height={96}
+              className="h-14 w-auto max-w-[148px] rounded-sm object-contain"
+            />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-[var(--muted)]">
             Secure land opportunities for families and investors building

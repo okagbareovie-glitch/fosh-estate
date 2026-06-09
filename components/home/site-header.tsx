@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { createTelUrl, createWhatsAppUrl } from "@/lib/format";
@@ -8,21 +9,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[rgba(249,249,255,0.94)] backdrop-blur-md">
       <div className="container-page flex min-h-[76px] items-center justify-between gap-5">
-        <Link href="/" className="group flex items-center gap-3">
-          <span
-            aria-hidden
-            className="grid h-11 w-11 place-items-center rounded-md bg-[var(--navy)] font-[family-name:var(--font-display)] text-lg font-semibold text-white"
-          >
-            FE
-          </span>
-          <span className="leading-tight">
-            <span className="block font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--navy)]">
-              {siteConfig.name}
-            </span>
-            <span className="hidden text-xs text-[var(--muted)] sm:block">
-              Secure. Prime. Profitable.
-            </span>
-          </span>
+        <Link href="/" className="group flex items-center gap-3" aria-label="Fosh Estate home">
+          <Image
+            src={siteConfig.logo}
+            alt="Fosh Estate logo"
+            width={150}
+            height={80}
+            priority
+            className="h-12 w-auto max-w-[122px] rounded-sm object-contain"
+          />
         </Link>
 
         <nav

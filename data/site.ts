@@ -62,6 +62,8 @@ export type IconItem = {
 export const siteConfig = {
   name: "Fosh Estate",
   tagline: "Building Dreams. Creating Legacy.",
+  logo: "/media/fosh-estate-logo.png",
+  heroImage: "/media/fosh-estate-hero.png",
   phone: "09069375855",
   instagram: "https://www.instagram.com/foshestate",
   website: "https://www.foshestate.com",
@@ -270,7 +272,8 @@ export const trustItems: IconItem[] = [
   },
   {
     title: "Strategic locations",
-    description: "Land opportunities positioned across active growth corridors.",
+    description:
+      "Land opportunities positioned across active growth corridors.",
     icon: MapPinned,
   },
   {
@@ -345,7 +348,13 @@ export const serviceItems: IconItem[] = [
   },
 ];
 
-export const operatingAreas = ["Lagos", "Ogun", "Rivers", "FCT", "Enugu"] as const;
+export const operatingAreas = [
+  "Lagos",
+  "Ogun",
+  "Rivers",
+  "FCT",
+  "Enugu",
+] as const;
 
 export type MapLocation = {
   id: string;
