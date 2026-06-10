@@ -18,9 +18,7 @@
   --line-strong: #c4c6cf;
   --success: #0f7a52;
   --gold: #b7791f;
-  --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Hanken Grotesk", "Aptos Display", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "Geist", "Aptos", ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-sans);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -58,8 +56,8 @@
   --color-background: var(--background);
   --color-foreground: var(--ink);
   --font-sans: var(--font-sans);
-  --font-display: "Hanken Grotesk", "Hanken Grotesk Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display);
+  --font-label: var(--font-label);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

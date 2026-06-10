@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const manrope = localFont({
+  src: "../public/fonts/Manrope-Variable.ttf",
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fraunces = localFont({
+  src: "../public/fonts/Fraunces-Variable.ttf",
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.foshestate.com"),
@@ -30,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" className={cn("font-sans", manrope.variable, fraunces.variable)}>
       <body className="antialiased">{children}</body>
     </html>
   );
