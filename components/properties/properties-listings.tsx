@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Filter, MapPin, RotateCcw, Search, ShieldCheck } from "lucide-react";
+import { Filter, RotateCcw, Search, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Listing } from "@/data/site";
 import type { ListingStatus } from "@/data/site";
-import { createWhatsAppUrl, formatNaira } from "@/lib/format";
+import { PaginationControls } from "@/components/ui/pagination-controls";
+import { ListingCard } from "./listing-card";
 
 type BudgetFilter = "all" | "starter" | "mid" | "premium";
 type StatusFilter = "all" | ListingStatus;
+const LISTINGS_PER_PAGE = 10;
 
 const budgetLabels: Record<BudgetFilter, string> = {
   all: "All budgets",
@@ -30,6 +30,7 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
   const [location, setLocation] = useState("all");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [budget, setBudget] = useState<BudgetFilter>("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const locationOptions = useMemo(() => {
     const locations = Array.from(
@@ -71,11 +72,42 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
     });
   }, [budget, listings, location, query, status]);
 
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredListings.length / LISTINGS_PER_PAGE)
+  );
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const paginatedListings = useMemo(() => {
+    const startIndex = (safeCurrentPage - 1) * LISTINGS_PER_PAGE;
+    return filteredListings.slice(startIndex, startIndex + LISTINGS_PER_PAGE);
+  }, [filteredListings, safeCurrentPage]);
+
   function resetFilters() {
     setQuery("");
     setLocation("all");
     setStatus("all");
     setBudget("all");
+    setCurrentPage(1);
+  }
+
+  function updateQuery(value: string) {
+    setQuery(value);
+    setCurrentPage(1);
+  }
+
+  function updateLocation(value: string) {
+    setLocation(value);
+    setCurrentPage(1);
+  }
+
+  function updateStatus(value: string) {
+    setStatus(value as StatusFilter);
+    setCurrentPage(1);
+  }
+
+  function updateBudget(value: string) {
+    setBudget(value as BudgetFilter);
+    setCurrentPage(1);
   }
 
   return (
@@ -104,7 +136,7 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
                     />
                     <input
                       value={query}
-                      onChange={(event) => setQuery(event.target.value)}
+                      onChange={(event) => updateQuery(event.target.value)}
                       className="min-h-12 w-full rounded-md border border-[var(--line-strong)] bg-white py-3 pl-10 pr-3 text-base text-[var(--ink)] placeholder:text-slate-400 focus:border-[var(--blue)]"
                       placeholder="Search listing, address, or state"
                     />
@@ -114,14 +146,14 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
                 <FilterSelect
                   label="State"
                   value={location}
-                  onChange={setLocation}
+                  onChange={updateLocation}
                   options={locationOptions}
                 />
 
                 <FilterSelect
                   label="Availability"
                   value={status}
-                  onChange={(value) => setStatus(value as StatusFilter)}
+                  onChange={updateStatus}
                   options={[
                     ["all", "All statuses"],
                     ["Available", "Available"],
@@ -133,7 +165,7 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
                 <FilterSelect
                   label="Budget"
                   value={budget}
-                  onChange={(value) => setBudget(value as BudgetFilter)}
+                  onChange={updateBudget}
                   options={Object.entries(budgetLabels)}
                 />
               </div>
@@ -166,74 +198,24 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
             </div>
 
             {filteredListings.length > 0 ? (
-              <div className="grid gap-5 md:grid-cols-2">
-                {filteredListings.map((listing) => (
-                  <article
-                    key={listing.id}
-                    className="flex min-w-0 flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-white"
-                  >
-                    <div className="relative aspect-[16/10] shrink-0 bg-[var(--surface-soft)]">
-                      <Image
-                        src={listing.image.src}
-                        alt={listing.image.alt}
-                        fill
-                        sizes="(min-width: 1024px) 38vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover"
-                      />
-                      <span className="absolute left-4 top-4 rounded-sm bg-white px-3 py-2 text-xs font-semibold text-[var(--navy)] shadow-[0_8px_20px_rgba(17,28,44,0.08)]">
-                        {listing.status}
-                      </span>
-                    </div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <div>
-                          <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-                            {formatNaira(listing.price)}
-                          </p>
-                          <h3 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-[var(--navy)]">
-                            {listing.title}
-                          </h3>
-                        </div>
-                        <span className="w-fit rounded-sm bg-[var(--surface-soft)] px-3 py-2 text-xs font-semibold text-[var(--navy)]">
-                          {listing.type}
-                        </span>
-                      </div>
-
-                      <div className="mt-4 flex items-center gap-2 text-sm text-[var(--muted)]">
-                        <MapPin aria-hidden size={16} />
-                        {listing.location}
-                      </div>
-                      <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
-                        {listing.description}
-                      </p>
-
-                      <div className="mt-5 grid gap-2 border-y border-[var(--line)] py-4 sm:grid-cols-3">
-                        <PropertySpec label="State" value={listing.state} />
-                        <PropertySpec label="Title" value="Secure" />
-                        <PropertySpec label="Use" value="Live / Invest" />
-                      </div>
-
-                      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                        <Link
-                          href={`/properties/${listing.slug}`}
-                          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[var(--line-strong)] bg-white px-5 text-sm font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"
-                        >
-                          View details
-                        </Link>
-                        <a
-                          href={createWhatsAppUrl(
-                            `Hello Fosh Estate, I want to book an inspection for ${listing.title} in ${listing.location}.`
-                          )}
-                          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
-                        >
-                          Book inspection
-                          <ArrowRight aria-hidden size={17} />
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+              <>
+                <div className="grid gap-5 md:grid-cols-2">
+                  {paginatedListings.map((listing) => (
+                    <ListingCard
+                      key={listing.id}
+                      listing={listing}
+                      ctaLabel="Book inspection"
+                    />
+                  ))}
+                </div>
+                <PaginationControls
+                  currentPage={safeCurrentPage}
+                  totalPages={totalPages}
+                  totalItems={filteredListings.length}
+                  pageSize={LISTINGS_PER_PAGE}
+                  onPageChange={setCurrentPage}
+                />
+              </>
             ) : (
               <div className="border border-[var(--line)] bg-[var(--background)] p-8 text-center">
                 <ShieldCheck aria-hidden className="mx-auto text-[var(--blue)]" size={32} />
@@ -286,14 +268,5 @@ function FilterSelect({
         ))}
       </select>
     </label>
-  );
-}
-
-function PropertySpec({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-xs font-semibold text-[var(--muted)]">{label}</p>
-      <p className="mt-1 text-sm font-semibold text-[var(--navy)]">{value}</p>
-    </div>
   );
 }

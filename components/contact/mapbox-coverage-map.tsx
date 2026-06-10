@@ -31,6 +31,9 @@ export function MapboxCoverageMap({ locations }: MapboxCoverageMapProps) {
     });
 
     mapRef.current = map;
+    map.once("load", () => {
+      requestAnimationFrame(() => map.resize());
+    });
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
     map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
     map.on("error", () => setHasMapError(true));
@@ -57,8 +60,8 @@ export function MapboxCoverageMap({ locations }: MapboxCoverageMapProps) {
   }
 
   return (
-    <div className="min-h-[520px] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--surface-soft)]">
-      <div ref={containerRef} className="h-[520px] w-full" />
+    <div className="h-[420px] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] md:h-[520px]">
+      <div ref={containerRef} className="h-full w-full" />
     </div>
   );
 }

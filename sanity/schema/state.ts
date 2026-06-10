@@ -23,7 +23,7 @@ export const state = defineType({
     }),
     defineField({
       name: "summary",
-      title: "Buyer Summary",
+      title: "State Summary",
       type: "text",
       rows: 3,
       description:

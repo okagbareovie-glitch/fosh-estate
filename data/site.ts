@@ -26,6 +26,7 @@ export type Listing = {
   status: ListingStatus;
   type: "Land" | "Property";
   description: string;
+  summary?: string;
   image: {
     src: string;
     alt: string;
@@ -349,11 +350,9 @@ export const serviceItems: IconItem[] = [
 ];
 
 export const operatingAreas = [
-  "Lagos",
-  "Ogun",
   "Rivers",
   "FCT",
-  "Enugu",
+  "Ogun",
 ] as const;
 
 export type MapLocation = {
@@ -364,12 +363,6 @@ export type MapLocation = {
 };
 
 export const mapLocations: MapLocation[] = [
-  {
-    id: "lagos",
-    name: "Lagos",
-    summary: "Primary commercial market for buyers and investor enquiries.",
-    coordinates: [3.3792, 6.5244],
-  },
   {
     id: "rivers",
     name: "Rivers",
@@ -387,11 +380,5 @@ export const mapLocations: MapLocation[] = [
     name: "Ogun",
     summary: "Current market for active estate land opportunities.",
     coordinates: [3.35, 7.0],
-  },
-  {
-    id: "enugu",
-    name: "Enugu",
-    summary: "Emerging eastern market for future land opportunities.",
-    coordinates: [7.4988, 6.4483],
   },
 ];

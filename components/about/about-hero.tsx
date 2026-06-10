@@ -39,26 +39,28 @@ export function AboutHero() {
           </div>
         </div>
 
-        <div className="relative min-h-[460px] overflow-hidden rounded-lg border border-[var(--line)] bg-white surface-shadow">
-          <Image
-            src="/media/about-estate-map.svg"
-            alt="Refined estate planning map representing Fosh Estate locations"
-            fill
-            priority
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover"
-          />
-          <div className="absolute bottom-5 left-5 right-5 border border-[var(--line)] bg-white/95 p-5 backdrop-blur-sm">
+        <figure className="overflow-hidden rounded-lg border border-[var(--line)] bg-white surface-shadow">
+          <div className="relative aspect-[4/3] min-h-[320px] bg-[var(--surface-soft)] sm:aspect-[16/11] lg:min-h-[430px]">
+            <Image
+              src="/media/about-hero.png"
+              alt="Premium estate planning visual representing Fosh Estate land ownership"
+              fill
+              priority
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <figcaption className="border-t border-[var(--line)] bg-white p-5 sm:p-6">
             <div className="flex items-center gap-2 text-sm font-semibold text-[var(--success)]">
               <ShieldCheck aria-hidden size={17} />
               Built for trust
             </div>
-            <p className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-[var(--navy)]">
+            <p className="mt-3 font-[family-name:var(--font-display)] text-xl font-semibold leading-tight text-[var(--navy)] sm:text-2xl">
               Strategic locations, secure title focus, and buyer-first
               inspection support.
             </p>
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

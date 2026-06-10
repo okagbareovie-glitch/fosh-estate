@@ -22,12 +22,6 @@ type SanityListing = {
   description?: string;
   summary?: string;
   featured?: boolean;
-  amenities?: string[];
-  sellingPoints?: string[];
-  coordinates?: {
-    lat?: number;
-    lng?: number;
-  };
   image?: SanityImageItem;
   imageGallery?: SanityImageItem[];
   videoGallery?: SanityVideoItem[];
@@ -126,8 +120,8 @@ function mapSanityListing(document: SanityListing): Listing | null {
     price: document.price || 0,
     status: getSafeStatus(document.status),
     type: document.type === "Property" ? "Property" : "Land",
-    description:
-      document.summary || document.description || "Property details pending.",
+    description: document.description || "Property details pending.",
+    summary: document.summary || document.description || "Property details pending.",
     image: {
       src: primaryImageUrl || fallbackImage,
       alt: firstImage?.alt || `${document.title} property image`,

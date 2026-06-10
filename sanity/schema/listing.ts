@@ -75,11 +75,11 @@ export const listing = defineType({
     }),
     defineField({
       name: "summary",
-      title: "Buyer Summary",
+      title: "Card Summary",
       type: "text",
       rows: 3,
       description:
-        "Optional short buyer-facing detail for property cards and detail pages.",
+        "Optional short preview shown on listing cards and search results. Use the full Description for the property detail page.",
     }),
     defineField({
       name: "featured",
@@ -131,12 +131,12 @@ export const listing = defineType({
     }),
     defineField({
       name: "videoGallery",
-      title: "Cloudinary Video Gallery",
+      title: "Video Gallery",
       type: "array",
       of: [
         defineField({
-          name: "cloudinaryVideo",
-          title: "Cloudinary Video",
+          name: "listingVideo",
+          title: "Listing Video",
           type: "object",
           fields: [
             defineField({
@@ -146,13 +146,15 @@ export const listing = defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: "url",
-              title: "Cloudinary Video URL",
-              type: "url",
-              validation: (Rule) =>
-                Rule.uri({
-                  scheme: ["http", "https"],
-                }),
+              name: "video",
+              title: "Video File",
+              type: "file",
+              description:
+                "Upload a short property video. MP4, WebM, and MOV files are recommended.",
+              options: {
+                accept: "video/mp4,video/webm,video/quicktime",
+              },
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: "poster",
@@ -178,31 +180,12 @@ export const listing = defineType({
           preview: {
             select: {
               title: "title",
-              subtitle: "url",
+              subtitle: "video.asset.originalFilename",
               media: "poster.image",
             },
           },
         }),
       ],
-    }),
-    defineField({
-      name: "amenities",
-      title: "Amenities",
-      type: "array",
-      of: [{ type: "string" }],
-    }),
-    defineField({
-      name: "sellingPoints",
-      title: "Selling Points",
-      type: "array",
-      of: [{ type: "string" }],
-    }),
-    defineField({
-      name: "coordinates",
-      title: "Map Coordinates",
-      type: "geopoint",
-      description:
-        "Optional exact estate coordinates for future property map previews.",
     }),
   ],
   preview: {

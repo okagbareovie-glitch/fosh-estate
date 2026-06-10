@@ -37,7 +37,7 @@ export function PropertyMediaCarousel({ listing }: PropertyMediaCarouselProps) {
 
   return (
     <div className="min-w-0">
-      <div className="relative min-h-[420px] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] md:min-h-[560px]">
+      <div className="relative aspect-[4/3] w-full max-w-full overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--navy)] sm:aspect-[16/10] lg:max-h-[620px]">
         {activeItem.type === "image" ? (
           <Image
             src={activeItem.src}
@@ -50,7 +50,7 @@ export function PropertyMediaCarousel({ listing }: PropertyMediaCarouselProps) {
         ) : (
           <video
             key={activeItem.id}
-            className="h-full min-h-[420px] w-full object-cover md:min-h-[560px]"
+            className="absolute inset-0 h-full w-full object-contain"
             controls
             playsInline
             preload="none"
@@ -61,13 +61,13 @@ export function PropertyMediaCarousel({ listing }: PropertyMediaCarouselProps) {
           </video>
         )}
 
-        <div className="absolute left-4 top-4 rounded-sm bg-white px-3 py-2 text-xs font-semibold text-[var(--navy)] shadow-[0_8px_20px_rgba(17,28,44,0.08)]">
+        <div className="absolute left-3 top-3 rounded-sm bg-white px-2.5 py-1.5 text-[11px] font-semibold text-[var(--navy)] shadow-[0_8px_20px_rgba(17,28,44,0.08)] sm:left-4 sm:top-4 sm:px-3 sm:py-2 sm:text-xs">
           {activeItem.type === "image" ? "Image" : "Video"} {activeIndex + 1} of{" "}
           {media.length}
         </div>
 
         {media.length > 1 ? (
-          <div className="absolute bottom-4 right-4 flex gap-2">
+          <div className="absolute inset-x-3 top-1/2 flex -translate-y-1/2 items-center justify-between gap-2 sm:inset-x-auto sm:bottom-4 sm:right-4 sm:top-auto sm:translate-y-0 sm:justify-end">
             <button
               type="button"
               onClick={goToPrevious}
@@ -88,51 +88,62 @@ export function PropertyMediaCarousel({ listing }: PropertyMediaCarouselProps) {
         ) : null}
       </div>
 
-      <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4">
-        {media.map((item, index) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Show ${item.type} ${index + 1}`}
-            aria-current={activeIndex === index}
-            className={`relative aspect-[4/3] min-w-0 cursor-pointer overflow-hidden rounded-md border bg-[var(--surface-soft)] transition-colors duration-200 ${
-              activeIndex === index
-                ? "border-[var(--blue)]"
-                : "border-[var(--line)] hover:border-[var(--line-strong)]"
-            }`}
-          >
-            {item.type === "image" ? (
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="160px"
-                className="object-cover"
-              />
-            ) : item.poster ? (
-              <Image
-                src={item.poster}
-                alt={item.title}
-                fill
-                sizes="160px"
-                className="object-cover"
-              />
-            ) : (
-              <span className="grid h-full w-full place-items-center bg-[var(--navy)] text-white">
-                <Play aria-hidden size={24} />
-              </span>
-            )}
-            <span className="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-sm bg-white/95 px-2 py-1 text-[11px] font-semibold text-[var(--navy)]">
+      <div className="mt-3 max-w-full overflow-hidden border border-[var(--line)] bg-white p-3 sm:mt-4">
+        <div className="flex items-center justify-between gap-4 px-1">
+          <p className="text-sm font-semibold text-[var(--navy)]">
+            Media gallery
+          </p>
+          <p className="text-xs font-medium text-[var(--muted)]">
+            {activeIndex + 1} of {media.length}
+          </p>
+        </div>
+
+        <div className="mt-3 flex max-w-full snap-x gap-2 overflow-x-auto pb-2 [scrollbar-width:thin] sm:gap-3">
+          {media.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Show ${item.type} ${index + 1}`}
+              aria-current={activeIndex === index}
+              className={`relative aspect-[4/3] w-20 shrink-0 snap-start cursor-pointer overflow-hidden rounded-md border bg-[var(--surface-soft)] transition-colors duration-200 min-[420px]:w-24 sm:w-36 lg:w-40 ${
+                activeIndex === index
+                  ? "border-[var(--blue)] ring-2 ring-[rgba(0,116,217,0.18)]"
+                  : "border-[var(--line)] hover:border-[var(--line-strong)]"
+              }`}
+            >
               {item.type === "image" ? (
-                <ImageIcon aria-hidden size={12} />
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="160px"
+                  className="object-cover"
+                />
+              ) : item.poster ? (
+                <Image
+                  src={item.poster}
+                  alt={item.title}
+                  fill
+                  sizes="160px"
+                  className="object-cover"
+                />
               ) : (
-                <Play aria-hidden size={12} />
+                <span className="grid h-full w-full place-items-center bg-[var(--navy)] text-white">
+                  <Play aria-hidden size={24} />
+                </span>
               )}
-              {item.type}
-            </span>
-          </button>
-        ))}
+              <span className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-sm bg-white/95 px-1.5 py-1 text-[10px] font-semibold text-[var(--navy)] sm:bottom-2 sm:left-2 sm:px-2 sm:text-[11px]">
+                {item.type === "image" ? (
+                  <ImageIcon aria-hidden size={12} />
+                ) : (
+                  <Play aria-hidden size={12} />
+                )}
+                {item.type}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

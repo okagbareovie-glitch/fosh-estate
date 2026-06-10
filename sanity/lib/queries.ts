@@ -12,9 +12,6 @@ const listingFields = `
   description,
   summary,
   featured,
-  amenities,
-  sellingPoints,
-  coordinates,
   "image": imageGallery[0]{
     alt,
     image
@@ -27,7 +24,7 @@ const listingFields = `
   "videoGallery": videoGallery[]{
     _key,
     title,
-    url,
+    "url": coalesce(video.asset->url, url),
     poster{
       alt,
       image
@@ -42,7 +39,7 @@ export const listingsQuery = defineQuery(`
 `);
 
 export const featuredListingsQuery = defineQuery(`
-  *[_type == "listing" && featured == true && defined(slug.current)] | order(orderRank asc, title asc)[0...6] {
+  *[_type == "listing" && featured == true && defined(slug.current)] | order(orderRank asc, title asc)[0...18] {
     ${listingFields}
   }
 `);

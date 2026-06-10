@@ -21,7 +21,7 @@ export function MapSection() {
           </p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
+        <div className="grid items-start gap-5 lg:grid-cols-[1fr_360px]">
           <MapboxCoverageMap locations={mapLocations} />
           <div className="grid gap-3">
             {mapLocations.map((location) => (

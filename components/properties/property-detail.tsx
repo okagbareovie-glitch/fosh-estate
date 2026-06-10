@@ -46,7 +46,7 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_420px] lg:items-start">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              {listing.status} · {listing.type}
+              {listing.status} / {listing.type}
             </p>
             <h1 className="mt-4 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl">
               {listing.title}
@@ -58,9 +58,7 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
               </span>
             </div>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              {listing.description} This detail page gives buyers a clearer
-              view of the land, the investment case, expected amenities, and
-              the next step for inspection.
+              {listing.description}
             </p>
           </div>
 

@@ -2,6 +2,7 @@ import type { Listing } from "@/data/site";
 import { siteConfig } from "@/data/site";
 import { createWhatsAppUrl, formatCompactNaira } from "@/lib/format";
 import { HeroSection as SplitHeroSection } from "@/components/ui/hero-section-2";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
 export function HeroSection({ listings }: { listings: Listing[] }) {
   const lowestPrice =
@@ -24,16 +25,23 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
       eyebrow={stateSummary}
       title={
         <>
-          Building Dreams.
+          Fosh Estate.
           <br />
-          <span className="text-[var(--blue)]">Creating Legacy.</span>
+          <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-2 text-[var(--blue)]">
+            Creating
+            <ContainerTextFlip
+              words={["Legacy", "Ownership", "Value", "Security", "Growth"]}
+              className="text-[0.92em]"
+              textClassName="font-[family-name:var(--font-display)]"
+            />
+          </span>
         </>
       }
       subtitle="Fosh Estate helps families and investors secure land opportunities with clear pricing, practical inspection support, and a long-term view of ownership value."
       callToAction={{
         text: "Book an inspection",
         href: createWhatsAppUrl(
-          "Hello Fosh Estate, I want to book an inspection or ask about available estate land."
+          "Hello Fosh Estate, I want to book an inspection or ask about available estate land.",
         ),
       }}
       secondaryAction={{
@@ -47,7 +55,7 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
         address:
           listings.length > 0
             ? `${listings.length} listing${listings.length === 1 ? "" : "s"} from ${formatCompactNaira(
-                lowestPrice
+                lowestPrice,
               )}`
             : "Listings loading from CMS",
       }}
@@ -64,9 +72,9 @@ function getActiveStates(listings: Listing[]) {
           (state) =>
             state.length > 0 &&
             state.toLowerCase() !== "location pending" &&
-            state.toLowerCase() !== "states pending"
-        )
-    )
+            state.toLowerCase() !== "states pending",
+        ),
+    ),
   ).sort((firstState, secondState) => firstState.localeCompare(secondState));
 }
 

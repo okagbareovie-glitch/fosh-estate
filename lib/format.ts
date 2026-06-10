@@ -1,23 +1,30 @@
+const NAIRA = "\u20a6";
+
 export function formatNaira(value: number): string {
-  return new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-    maximumFractionDigits: 0,
-  }).format(value);
+  return `${NAIRA}${Math.round(value).toLocaleString("en-US")}`;
 }
 
 export function formatCompactNaira(value: number): string {
-  return new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-    notation: "compact",
-    compactDisplay: "short",
-    currencyDisplay: "narrowSymbol",
-    maximumFractionDigits: 1,
-  })
-    .format(value)
-    .replace(/\s/g, "")
-    .replace("NGN", "₦");
+  const absoluteValue = Math.abs(value);
+  const sign = value < 0 ? "-" : "";
+
+  if (absoluteValue >= 1_000_000_000) {
+    return `${sign}${NAIRA}${formatCompactNumber(
+      absoluteValue / 1_000_000_000
+    )}B`;
+  }
+
+  if (absoluteValue >= 1_000_000) {
+    return `${sign}${NAIRA}${formatCompactNumber(
+      absoluteValue / 1_000_000
+    )}M`;
+  }
+
+  if (absoluteValue >= 1_000) {
+    return `${sign}${NAIRA}${formatCompactNumber(absoluteValue / 1_000)}K`;
+  }
+
+  return `${sign}${NAIRA}${Math.round(absoluteValue).toLocaleString("en-US")}`;
 }
 
 export function createWhatsAppUrl(message: string): string {
@@ -27,4 +34,8 @@ export function createWhatsAppUrl(message: string): string {
 
 export function createTelUrl(phoneNumber: string): string {
   return `tel:${phoneNumber.replace(/\D/g, "")}`;
+}
+
+function formatCompactNumber(value: number): string {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }

@@ -1,10 +1,24 @@
-import Image from "next/image";
-import { ArrowRight, MapPin } from "lucide-react";
+"use client";
+
+import { ArrowRight } from "lucide-react";
+import { useMemo, useState } from "react";
 import type { Listing } from "@/data/site";
-import { createWhatsAppUrl, formatNaira } from "@/lib/format";
+import { createWhatsAppUrl } from "@/lib/format";
+import { ListingCard } from "@/components/properties/listing-card";
+import { PaginationControls } from "@/components/ui/pagination-controls";
+
+const FEATURED_LISTINGS_PER_PAGE = 6;
 
 export function FeaturedListings({ listings }: { listings: Listing[] }) {
-  const visibleListings = listings.slice(0, 5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(listings.length / FEATURED_LISTINGS_PER_PAGE)
+  );
+  const visibleListings = useMemo(() => {
+    const startIndex = (currentPage - 1) * FEATURED_LISTINGS_PER_PAGE;
+    return listings.slice(startIndex, startIndex + FEATURED_LISTINGS_PER_PAGE);
+  }, [currentPage, listings]);
 
   return (
     <section id="featured-listings" className="section-y bg-[var(--background)]">
@@ -31,48 +45,22 @@ export function FeaturedListings({ listings }: { listings: Listing[] }) {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {visibleListings.map((listing) => (
-            <article
+            <ListingCard
               key={listing.id}
-              className="flex min-w-0 flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-white"
-            >
-              <div className="relative aspect-[16/11] shrink-0 bg-[var(--surface-soft)]">
-                <Image
-                  src={listing.image.src}
-                  alt={listing.image.alt}
-                  fill
-                  sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <span className="absolute left-4 top-4 rounded-sm bg-white px-3 py-2 text-xs font-semibold text-[var(--navy)] shadow-[0_8px_20px_rgba(17,28,44,0.08)]">
-                  {listing.status}
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-                  {formatNaira(listing.price)}
-                </p>
-                <h3 className="mt-2 text-wrap font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-[var(--navy)]">
-                  {listing.title}
-                </h3>
-                <div className="mt-3 flex items-center gap-2 text-sm text-[var(--muted)]">
-                  <MapPin aria-hidden size={16} />
-                  {listing.location}
-                </div>
-                <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
-                  {listing.description}
-                </p>
-                <a
-                  href={createWhatsAppUrl(
-                    `Hello Fosh Estate, I want details about ${listing.title} in ${listing.location}.`
-                  )}
-                  className="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--navy)] px-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
-                >
-                  Ask about this land
-                </a>
-              </div>
-            </article>
+              listing={listing}
+              ctaLabel="Ask about this land"
+            />
           ))}
         </div>
+
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={listings.length}
+          pageSize={FEATURED_LISTINGS_PER_PAGE}
+          onPageChange={setCurrentPage}
+          itemLabel="featured listings"
+        />
       </div>
     </section>
   );
