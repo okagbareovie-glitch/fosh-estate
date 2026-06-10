@@ -119,7 +119,7 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
               <div className="flex items-center gap-2">
                 <Filter aria-hidden className="text-[var(--blue)]" size={20} />
                 <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
-                  Refine listings
+                  Narrow your search
                 </h2>
               </div>
 
@@ -138,7 +138,7 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
                       value={query}
                       onChange={(event) => updateQuery(event.target.value)}
                       className="min-h-12 w-full rounded-md border border-[var(--line-strong)] bg-white py-3 pl-10 pr-3 text-base text-[var(--ink)] placeholder:text-slate-400 focus:border-[var(--blue)]"
-                      placeholder="Search listing, address, or state"
+                      placeholder="Search by estate, area, or state"
                     />
                   </span>
                 </label>
@@ -188,12 +188,12 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
                   {filteredListings.length} matching listings
                 </p>
                 <h2 className="mt-2 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)]">
-                  Current land listings
+                  Land options ready for enquiry
                 </h2>
               </div>
               <p className="max-w-md text-sm leading-6 text-[var(--muted)]">
-                Prices and availability should be confirmed with the Fosh Estate
-                team before payment or inspection.
+                Use the filters to shortlist options, then confirm current
+                price, availability, and inspection details with the team.
               </p>
             </div>
 
@@ -220,11 +220,11 @@ export function PropertiesListings({ listings }: { listings: Listing[] }) {
               <div className="border border-[var(--line)] bg-[var(--background)] p-8 text-center">
                 <ShieldCheck aria-hidden className="mx-auto text-[var(--blue)]" size={32} />
                 <h3 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
-                  No listing matches those filters.
+                  No land option matches those filters.
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                  Reset the filters or send Fosh Estate a WhatsApp message for
-                  the latest availability.
+                  Reset the filters or message Fosh Estate for current
+                  availability that may not be listed yet.
                 </p>
                 <button
                   type="button"

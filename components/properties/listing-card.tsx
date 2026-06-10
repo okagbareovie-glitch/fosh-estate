@@ -106,7 +106,7 @@ export function ListingCard({
             {formatCompactNaira(listing.price)}
           </p>
           <span className="text-xs font-medium text-[var(--muted)]">
-            asking price
+            listed price
           </span>
         </div>
 
@@ -130,7 +130,7 @@ export function ListingCard({
             href={`/properties/${listing.slug}`}
             className="inline-flex min-h-12 items-center justify-center rounded-md border border-[var(--line-strong)] bg-white px-5 text-sm font-semibold text-[var(--navy)] transition hover:border-[var(--blue)]"
           >
-            View details
+            View land details
           </Link>
           <a
             href={enquiryUrl}

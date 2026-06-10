@@ -77,12 +77,11 @@ function MapFallback({ locations }: MapboxCoverageMapProps) {
       <div className="relative z-10 flex h-full min-h-[470px] flex-col justify-between">
         <div className="max-w-md border border-[var(--line)] bg-white/95 p-5">
           <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-            Mapbox token pending
+            Coverage map
           </p>
           <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-            Add `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` to `.env.local` to activate
-            the interactive map. This placeholder keeps the layout polished
-            until then.
+            Use the operating area cards below to review current markets while
+            the interactive map is unavailable.
           </p>
         </div>
 

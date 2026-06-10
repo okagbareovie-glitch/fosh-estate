@@ -4,22 +4,22 @@ import { createWhatsAppUrl } from "@/lib/format";
 const trustSteps = [
   {
     title: "Confirm availability",
-    copy: "Ask the team for the latest price list and available plot details.",
+    copy: "Request the current price, plot status, and payment expectations before you plan around a listing.",
     icon: BadgeCheck,
   },
   {
     title: "Book inspection",
-    copy: "Visit the estate location or request inspection guidance before payment.",
+    copy: "See the location, ask access questions, and understand the estate environment before payment.",
     icon: MapPinned,
   },
   {
     title: "Review documentation",
-    copy: "Clarify title, allocation process, and buyer requirements.",
+    copy: "Clarify title, allocation process, buyer requirements, and the documents you should expect.",
     icon: ShieldCheck,
   },
   {
     title: "Plan ownership",
-    copy: "Choose the land option that matches your budget, family, or investment goal.",
+    copy: "Choose the option that matches your budget, timeline, family need, or investment goal.",
     icon: Building2,
   },
 ];
@@ -34,12 +34,12 @@ export function PropertiesTrust() {
               Before you buy
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-              A property page should help buyers ask better questions.
+              A good land decision starts with the right questions.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">
-              Fosh Estate listings are structured to lead buyers into a
-              practical conversation: what is available, what is the title, how
-              does inspection work, and what budget fits best?
+              Fosh Estate listings are designed to start a practical
+              conversation: what is available now, what is the title position,
+              how does inspection work, and which option fits your budget best?
             </p>
             <a
               href={createWhatsAppUrl(
@@ -47,7 +47,7 @@ export function PropertiesTrust() {
               )}
               className="mt-8 inline-flex min-h-13 items-center justify-center rounded-md bg-[var(--navy)] px-6 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
             >
-              Get buyer guidance
+              Ask for buyer guidance
             </a>
           </div>
 

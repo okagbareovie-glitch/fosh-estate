@@ -21,29 +21,32 @@ export function FounderSection() {
 
         <div>
           <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-            Founder’s note
+            Founder&apos;s note
           </p>
           <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-            A personal commitment to helping buyers own with confidence.
+            A personal commitment to buyer confidence.
           </h2>
           <div className="mt-8 border-l-4 border-[var(--blue)] pl-5">
             <Quote aria-hidden className="text-[var(--blue)]" size={26} />
             <p className="mt-4 text-xl leading-9 text-[var(--ink)]">
-              Fosh Estate was shaped around a simple belief: land ownership
-              should feel secure, understandable, and worth the sacrifice
-              buyers make to invest in their future.
+              Land is one of the biggest decisions many people will ever make.
+              Our responsibility is to help buyers slow down, ask the right
+              questions, and move with better information.
             </p>
           </div>
           <p className="mt-7 text-base leading-8 text-[var(--muted)]">
-            The founder’s story will be expanded once the client supplies the
-            approved biography and professional portrait. For now, this section
-            is structured to present him as the human face of the brand:
-            someone focused on trust, inspection support, documentation
-            clarity, and long-term value for every buyer.
+            Fosh Estate is led with a practical understanding of what buyers
+            need before they commit: clear options, current pricing, inspection
+            guidance, and honest conversations about documentation and long-term
+            value. This section will be expanded with the founder&apos;s approved
+            biography and professional portrait.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {["Trust", "Guidance", "Legacy"].map((item) => (
-              <div key={item} className="border border-[var(--line)] bg-[var(--background)] p-4">
+              <div
+                key={item}
+                className="border border-[var(--line)] bg-[var(--background)] p-4"
+              >
                 <p className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
                   {item}
                 </p>

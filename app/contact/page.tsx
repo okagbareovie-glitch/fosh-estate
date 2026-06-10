@@ -10,7 +10,7 @@ import { SiteFooter, SiteHeader } from "@/components/home";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Fosh Estate to ask about available estate land, book an inspection, or speak with the team.",
+    "Contact Fosh Estate to request current land availability, price details, inspection dates, and buyer guidance before you choose a plot.",
 };
 
 export default function ContactPage() {

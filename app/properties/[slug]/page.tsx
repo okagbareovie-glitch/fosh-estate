@@ -37,9 +37,9 @@ export async function generateMetadata({
 
   return {
     title: listing.title,
-    description: `${listing.title} in ${listing.location}, starting at ${formatNaira(
+    description: `${listing.title} in ${listing.location}, listed from ${formatNaira(
       listing.price
-    )}. View details and book an inspection with Fosh Estate.`,
+    )}. Review land details, media, and inspection options with Fosh Estate.`,
   };
 }
 

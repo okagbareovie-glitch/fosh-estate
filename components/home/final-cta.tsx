@@ -9,14 +9,15 @@ export function FinalCta() {
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[#afc8f0]">
-              Inspection and enquiry
+              Ready to inspect?
             </p>
             <h2 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight md:text-5xl">
-              Start with the land option that matches your budget.
+              Ask the right questions before you choose a plot.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#d4e3ff]">
-              Ask for available plots, payment details, inspection dates, and
-              title information before you make a decision.
+              Get the latest availability, current prices, payment guidance,
+              inspection dates, and title information directly from the Fosh
+              Estate team.
             </p>
           </div>
 
@@ -27,7 +28,7 @@ export function FinalCta() {
               )}
               className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-white px-5 text-sm font-semibold text-[var(--navy)] transition-colors duration-200 hover:bg-[#d4e3ff]"
             >
-              Send WhatsApp message
+              Chat with Fosh Estate
               <ArrowRight aria-hidden size={17} />
             </a>
             <a

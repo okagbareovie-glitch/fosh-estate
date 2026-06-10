@@ -17,7 +17,7 @@ export function ContactForm() {
     const interest = String(formData.get("interest") ?? "").trim();
 
     const message = [
-      "Hello Fosh Estate, I want to make an enquiry.",
+      "Hello Fosh Estate, I want to make a land enquiry.",
       `Name: ${name}`,
       `Phone: ${phone}`,
       `Interest: ${interest}`,
@@ -75,7 +75,7 @@ export function ContactForm() {
             htmlFor="interest"
             className="block text-sm font-semibold text-[var(--navy)]"
           >
-            What do you want to ask about?
+            What would you like to confirm?
           </label>
           <textarea
             id="interest"
@@ -83,7 +83,7 @@ export function ContactForm() {
             required
             rows={5}
             className="mt-2 w-full resize-y rounded-md border border-[var(--line-strong)] bg-white px-4 py-3 text-base leading-7 text-[var(--ink)] transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--blue)]"
-            placeholder="Example: I want details about available land in Ogun and inspection dates."
+            placeholder="Example: I want current land options in Ogun, price details, and the next inspection date."
           />
         </div>
       </div>
@@ -92,7 +92,7 @@ export function ContactForm() {
         type="submit"
         className="mt-6 inline-flex min-h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-6 text-base font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
       >
-        Send enquiry on WhatsApp
+        Prepare WhatsApp enquiry
         <Send aria-hidden size={18} />
       </button>
 
@@ -101,8 +101,8 @@ export function ContactForm() {
         aria-live="polite"
       >
         {status === "ready"
-          ? "Your WhatsApp enquiry is ready in a new tab."
-          : "You will review the message in WhatsApp before sending."}
+          ? "Your enquiry is ready in WhatsApp. Review it before sending."
+          : "We will open WhatsApp with your message prepared for review."}
       </p>
     </form>
   );

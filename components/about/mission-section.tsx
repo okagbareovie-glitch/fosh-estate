@@ -3,17 +3,17 @@ import { Building2, MapPinned, ShieldCheck } from "lucide-react";
 const missionItems = [
   {
     title: "Mission",
-    copy: "To help individuals, families, and investors secure estate land with clarity, confidence, and a long-term view of value.",
+    copy: "To help families, first-time buyers, and investors approach land ownership with clearer information, guided inspections, and practical next steps.",
     icon: ShieldCheck,
   },
   {
     title: "Vision",
-    copy: "To become a trusted real estate partner for buyers building generational wealth through land and property ownership.",
+    copy: "To become a trusted real estate partner for people building lasting value through land and property ownership in Nigeria.",
     icon: Building2,
   },
   {
     title: "Footprint",
-    copy: "Focused on growth markets across Lagos, Rivers, FCT, Ogun, and other selected states as the property catalogue expands.",
+    copy: "Focused on selected growth markets including Rivers, FCT, and Ogun, with expansion guided by demand, access, and buyer confidence.",
     icon: MapPinned,
   },
 ];

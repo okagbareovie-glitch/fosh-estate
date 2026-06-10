@@ -15,19 +15,19 @@ import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 import { PropertyMediaCarousel } from "./property-media-carousel";
 
 const detailHighlights = [
-  "Secure title focus",
-  "Inspection support",
-  "Estate infrastructure",
-  "Buyer guidance",
+  "Title questions to ask",
+  "Inspection before payment",
+  "Access and estate planning",
+  "Buyer guidance available",
 ];
 
 const detailAmenities = [
-  { label: "Good road network", icon: Building2 },
-  { label: "Gated and secured estate", icon: Fence },
-  { label: "Street lights and electricity", icon: Lightbulb },
-  { label: "Green areas and landscaping", icon: Sprout },
-  { label: "24/7 security and surveillance", icon: ShieldCheck },
-  { label: "Drainage planning", icon: BadgeCheck },
+  { label: "Road access and movement", icon: Building2 },
+  { label: "Estate access and security", icon: Fence },
+  { label: "Lighting and power expectations", icon: Lightbulb },
+  { label: "Green areas and estate layout", icon: Sprout },
+  { label: "Security planning to confirm", icon: ShieldCheck },
+  { label: "Drainage and site conditions", icon: BadgeCheck },
 ];
 
 export function PropertyDetailHero({ listing }: { listing: Listing }) {
@@ -63,15 +63,15 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
           </div>
 
           <aside className="border border-[var(--line)] bg-white p-5 surface-shadow lg:sticky lg:top-24">
-            <p className="text-sm text-[var(--muted)]">Starting price</p>
+            <p className="text-sm text-[var(--muted)]">Listed price</p>
             <p className="mt-2 font-[family-name:var(--font-display)] text-4xl font-semibold text-[var(--navy)]">
               {formatNaira(listing.price)}
             </p>
             <div className="mt-5 grid gap-3 border-y border-[var(--line)] py-5">
-              <Fact label="Address / area" value={listing.address} />
+              <Fact label="Area / address" value={listing.address} />
               <Fact label="State" value={listing.state} />
               <Fact label="Current status" value={listing.status} />
-              <Fact label="Property type" value={listing.type} />
+              <Fact label="Listing type" value={listing.type} />
             </div>
             <a
               href={createWhatsAppUrl(
@@ -79,7 +79,7 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
               )}
               className="mt-5 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
             >
-              Enquire about this land
+              Ask about this land
               <ArrowRight aria-hidden size={17} />
             </a>
           </aside>
@@ -113,15 +113,15 @@ export function PropertyDetailSections({ listing }: { listing: Listing }) {
         <div className="container-page grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              Why this land
+              What to review
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-              Built for buyers who want clarity before commitment.
+              Look beyond the price before you commit.
             </h2>
             <p className="mt-5 text-base leading-7 text-[var(--muted)]">
-              {listing.title} should be reviewed through the things that matter
-              most in land ownership: title, location, access, infrastructure,
-              and long-term use.
+              Review {listing.title} through the things that matter in land
+              ownership: title position, location, access, inspection findings,
+              estate planning, payment expectations, and long-term use.
             </p>
           </div>
 
@@ -149,12 +149,12 @@ export function PropertyDetailSections({ listing }: { listing: Listing }) {
               Next step
             </p>
             <h2 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight md:text-5xl">
-              Ask for allocation details, title information, and inspection
-              dates.
+              Request the current details before making a payment decision.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#d4e3ff]">
-              Prices and availability can change. Confirm current details with
-              the Fosh Estate team before making payment decisions.
+              Confirm availability, price, allocation process, title
+              information, inspection dates, and payment guidance directly with
+              the Fosh Estate team.
             </p>
           </div>
           <a
@@ -163,7 +163,7 @@ export function PropertyDetailSections({ listing }: { listing: Listing }) {
             )}
             className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-white px-6 text-base font-semibold text-[var(--navy)] transition-colors duration-200 hover:bg-[#d4e3ff]"
           >
-            Request current details
+            Request current land details
             <ArrowRight aria-hidden size={18} />
           </a>
         </div>

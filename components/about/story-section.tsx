@@ -1,15 +1,15 @@
 const storyPoints = [
   {
     title: "The problem",
-    copy: "Many buyers want to own land, but they are slowed down by unclear information, inconsistent pricing, weak documentation, and uncertainty about where value will grow.",
+    copy: "Many Nigerians want to own land, but the process often feels crowded with unclear prices, weak explanations, rushed decisions, and uncertainty about which locations can hold long-term value.",
   },
   {
     title: "The approach",
-    copy: "Fosh Estate simplifies the journey by presenting focused land opportunities, direct enquiry support, inspection guidance, and a clear path from interest to allocation.",
+    copy: "Fosh Estate narrows the noise by presenting focused land opportunities, current enquiry support, practical inspection guidance, and a simpler path from interest to next steps.",
   },
   {
     title: "The promise",
-    copy: "Every buyer should feel informed before they commit. The brand is built around secure ownership, practical value, and legacy-focused decisions.",
+    copy: "Every buyer should understand what they are considering before they commit. Our work is shaped around clearer information, stronger questions, and ownership decisions that can serve the future.",
   },
 ];
 
@@ -22,7 +22,7 @@ export function StorySection() {
             Our story
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-            Making land ownership feel less confusing and more deliberate.
+            Making land ownership less confusing and more intentional.
           </h2>
         </div>
 

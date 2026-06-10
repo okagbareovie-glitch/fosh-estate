@@ -6,15 +6,15 @@ export function AmenitiesSection() {
       <div className="container-page grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
         <div>
           <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-            Estate amenities
+            Planned estate value
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-            Infrastructure that protects value.
+            Land is stronger when the estate plan is clear.
           </h2>
           <p className="mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">
-            The estate promise is not just a plot of land. It is access,
-            security, drainage, lighting, landscaping, and proximity working
-            together to support livability and investment confidence.
+            Buyers do not only need a plot. They need access, security,
+            drainage, lighting, and a location plan that supports future use,
+            resale value, and long-term confidence.
           </p>
         </div>
 

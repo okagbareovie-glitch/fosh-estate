@@ -20,17 +20,17 @@ export function PropertiesHero({ listings }: { listings: Listing[] }) {
       <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
       <div className="container-page relative py-14 md:py-20 lg:py-24">
         <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-          Available estate land
+          Current land opportunities
         </p>
         <div className="mt-5 grid gap-9 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>
             <h1 className="max-w-5xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl lg:text-7xl">
-              Compare available land before you book an inspection.
+              Find the land option that fits your budget and next move.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              Browse current Fosh Estate land opportunities by state, address,
-              budget, and availability. Each listing is structured for clear
-              enquiry and direct inspection follow-up.
+              Review current Fosh Estate listings by state, address, price, and
+              availability. When a land option looks right, request the latest
+              details and book an inspection before making a payment decision.
             </p>
           </div>
 
@@ -38,16 +38,16 @@ export function PropertiesHero({ listings }: { listings: Listing[] }) {
             <div className="flex items-center gap-3 border-b border-[var(--line)] pb-5">
               <Search aria-hidden className="text-[var(--blue)]" size={24} />
               <p className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
-                Quick property brief
+                Quick land brief
               </p>
             </div>
             <div className="grid gap-4 py-5">
               <HeroFact
                 icon={BadgeCheck}
-                label="Current listings"
+                label="Available listings"
                 value={`${listings.length} land options`}
               />
-              <HeroFact icon={MapPinned} label="Starting from" value={formatNaira(lowestPrice)} />
+              <HeroFact icon={MapPinned} label="Prices from" value={formatNaira(lowestPrice)} />
               <HeroFact
                 icon={MapPinned}
                 label="Current states"
@@ -60,7 +60,7 @@ export function PropertiesHero({ listings }: { listings: Listing[] }) {
               )}
               className="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
             >
-              Request full property list
+              Request current land list
               <ArrowRight aria-hidden size={17} />
             </a>
           </div>

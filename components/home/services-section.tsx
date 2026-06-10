@@ -6,10 +6,10 @@ export function ServicesSection() {
       <div className="container-page">
         <div className="max-w-3xl">
           <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-            What Fosh Estate helps buyers do
+            How Fosh Estate supports buyers
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-            Move from interest to confident ownership.
+            From first enquiry to a smarter land decision.
           </h2>
         </div>
 

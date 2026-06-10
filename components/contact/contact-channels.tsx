@@ -1,31 +1,31 @@
-import { Camera, Mail, MapPinned, Phone } from "lucide-react";
+import { Camera, MapPinned, MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { createTelUrl, createWhatsAppUrl } from "@/lib/format";
 
 const channels = [
   {
     title: "Call",
-    detail: siteConfig.phone,
+    detail: "Speak directly with the team",
     href: createTelUrl(siteConfig.phone),
     icon: Phone,
   },
   {
     title: "WhatsApp",
-    detail: "Fastest enquiry channel",
+    detail: "Quickest way to request details",
     href: createWhatsAppUrl(
-      "Hello Fosh Estate, I want to ask about available estate land."
+      "Hello Fosh Estate, I want to ask about current land availability, pricing, and inspection dates."
     ),
-    icon: Mail,
+    icon: MessageCircle,
   },
   {
     title: "Instagram",
-    detail: "@foshestate",
+    detail: "Follow listing updates",
     href: siteConfig.instagram,
     icon: Camera,
   },
   {
     title: "Coverage",
-    detail: "Lagos, Port Harcourt, Abuja",
+    detail: "Rivers, FCT, and Ogun",
     href: "#coverage-map",
     icon: MapPinned,
   },

@@ -26,10 +26,10 @@ export function FeaturedListings({ listings }: { listings: Listing[] }) {
         <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              Current land opportunities
+              Available estate land
             </p>
             <h2 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-              Land options with clear entry points.
+              Compare current land options before you book an inspection.
             </h2>
           </div>
           <a
@@ -38,7 +38,7 @@ export function FeaturedListings({ listings }: { listings: Listing[] }) {
             )}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[var(--line-strong)] bg-white px-5 text-sm font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"
           >
-            Request full price list
+            Request current price list
             <ArrowRight aria-hidden size={17} />
           </a>
         </div>

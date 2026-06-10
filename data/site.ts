@@ -267,24 +267,24 @@ export const featuredListings: Listing[] = [
 
 export const trustItems: IconItem[] = [
   {
-    title: "Secure title",
-    description: "Every enquiry is guided by documentation clarity.",
+    title: "Documentation guidance",
+    description: "Ask the right title and allocation questions before payment.",
     icon: BadgeCheck,
   },
   {
-    title: "Strategic locations",
+    title: "Growth-market locations",
     description:
-      "Land opportunities positioned across active growth corridors.",
+      "Estate opportunities focused on markets with active buyer demand.",
     icon: MapPinned,
   },
   {
-    title: "High ROI potential",
-    description: "Land opportunities selected for long-term value growth.",
+    title: "Value-focused entry",
+    description: "Options for buyers who want land that can appreciate over time.",
     icon: ChartNoAxesCombined,
   },
   {
-    title: "Gated estate planning",
-    description: "Security, access control, and planned infrastructure matter.",
+    title: "Inspection support",
+    description: "Get site visit guidance before you make a final decision.",
     icon: Fence,
   },
 ];
@@ -292,59 +292,59 @@ export const trustItems: IconItem[] = [
 export const amenities: IconItem[] = [
   {
     title: "Good road network",
-    description: "Access roads planned to make movement practical.",
+    description: "Access routes that make inspection, development, and daily movement easier.",
     icon: Road,
   },
   {
     title: "24/7 security",
-    description: "Surveillance and secure access for estate confidence.",
+    description: "Security planning that helps buyers feel confident about the estate.",
     icon: ShieldCheck,
   },
   {
     title: "Drainage system",
-    description: "Infrastructure planning that protects long-term value.",
+    description: "Drainage considerations that protect usability through changing seasons.",
     icon: Building2,
   },
   {
     title: "Street lights",
-    description: "Lighting and electricity access as core estate priorities.",
+    description: "Lighting plans that support safer movement and a more livable estate.",
     icon: Lightbulb,
   },
   {
     title: "Green areas",
-    description: "Landscaping and open spaces for livable estate planning.",
+    description: "Open-space thinking that makes the estate feel planned, not random.",
     icon: Sprout,
   },
   {
     title: "Major landmarks",
-    description: "Locations selected for proximity and practical access.",
+    description: "Location context that helps buyers understand access and future demand.",
     icon: Landmark,
   },
 ];
 
 export const serviceItems: IconItem[] = [
   {
-    title: "Land acquisition",
+    title: "Land selection",
     description:
-      "Guided estate land purchase options for first-time buyers, families, and investors.",
+      "Shortlist estate land based on budget, location, access, and intended use.",
     icon: MapPinned,
   },
   {
     title: "Investment guidance",
     description:
-      "Clear pricing, inspection support, and practical advice before a buyer commits.",
+      "Understand pricing, payment expectations, and the long-term value angle.",
     icon: ChartNoAxesCombined,
   },
   {
-    title: "Media-backed listings",
+    title: "Inspection coordination",
     description:
-      "A future CMS workflow for images, videos, prices, and listing status updates.",
+      "Book site visits and request the details you need before committing funds.",
     icon: Video,
   },
   {
-    title: "Development readiness",
+    title: "Ownership readiness",
     description:
-      "Estate choices framed around security, access, infrastructure, and appreciation.",
+      "Move forward with clearer questions around title, allocation, and next steps.",
     icon: Zap,
   },
 ];
@@ -366,19 +366,22 @@ export const mapLocations: MapLocation[] = [
   {
     id: "rivers",
     name: "Rivers",
-    summary: "Southern growth market for land and property opportunities.",
+    summary:
+      "A southern growth market for buyers watching access, development, and long-term land demand.",
     coordinates: [7.0498, 4.8156],
   },
   {
     id: "fct",
     name: "FCT",
-    summary: "Federal capital market for future property expansion.",
+    summary:
+      "A capital market for buyers considering future expansion and planned property growth.",
     coordinates: [7.3986, 9.0765],
   },
   {
     id: "ogun",
     name: "Ogun",
-    summary: "Current market for active estate land opportunities.",
+    summary:
+      "An active land market with estate opportunities around growing residential corridors.",
     coordinates: [3.35, 7.0],
   },
 ];

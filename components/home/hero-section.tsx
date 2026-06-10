@@ -25,27 +25,27 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
       eyebrow={stateSummary}
       title={
         <>
-          Fosh Estate.
+          Own land.
           <br />
           <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-2 text-[var(--blue)]">
-            Creating
+            Build
             <ContainerTextFlip
-              words={["Legacy", "Ownership", "Value", "Security", "Growth"]}
+              words={["Legacy", "Security", "Value", "Growth", "Confidence"]}
               className="text-[0.92em]"
               textClassName="font-[family-name:var(--font-display)]"
             />
           </span>
         </>
       }
-      subtitle="Fosh Estate helps families and investors secure land opportunities with clear pricing, practical inspection support, and a long-term view of ownership value."
+      subtitle="Fosh Estate helps families and investors find estate land with clear pricing, guided inspections, and practical support before they commit."
       callToAction={{
-        text: "Book an inspection",
+        text: "Book a site inspection",
         href: createWhatsAppUrl(
           "Hello Fosh Estate, I want to book an inspection or ask about available estate land.",
         ),
       }}
       secondaryAction={{
-        text: "View available land",
+        text: "See current listings",
         href: "#featured-listings",
       }}
       backgroundImage={siteConfig.heroImage}

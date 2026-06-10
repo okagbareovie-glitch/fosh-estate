@@ -13,12 +13,13 @@ export function AboutHero() {
             About Fosh Estate
           </p>
           <h1 className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl lg:text-7xl">
-            A real estate brand built around secure land ownership.
+            Helping buyers own land with clarity, confidence, and purpose.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Fosh Estate exists to help buyers move from uncertainty to
-            confident ownership through clear estate options, practical
-            guidance, and a disciplined focus on long-term land value.
+            Fosh Estate was created for people who want more than a plot on
+            paper. We help families and investors compare real estate
+            opportunities, ask better questions, inspect with confidence, and
+            make land decisions with a long-term view.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
@@ -27,14 +28,14 @@ export function AboutHero() {
               )}
               className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-6 text-base font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
             >
-              Speak with the team
+              Speak with Fosh Estate
               <ArrowRight aria-hidden size={18} />
             </a>
             <Link
               href="/properties"
               className="inline-flex min-h-14 items-center justify-center rounded-md border border-[var(--line-strong)] bg-white px-6 text-base font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"
             >
-              View properties
+              View land options
             </Link>
           </div>
         </div>
@@ -56,8 +57,8 @@ export function AboutHero() {
               Built for trust
             </div>
             <p className="mt-3 font-[family-name:var(--font-display)] text-xl font-semibold leading-tight text-[var(--navy)] sm:text-2xl">
-              Strategic locations, secure title focus, and buyer-first
-              inspection support.
+              Built around practical guidance, inspection confidence, and land
+              opportunities selected for long-term value.
             </p>
           </figcaption>
         </figure>

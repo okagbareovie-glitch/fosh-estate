@@ -10,7 +10,7 @@ export function AreasSection() {
             Areas of operation
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight md:text-5xl">
-            Focused on Nigeria&apos;s high-demand growth markets.
+            Focused on markets where land demand keeps moving.
           </h2>
         </div>
 

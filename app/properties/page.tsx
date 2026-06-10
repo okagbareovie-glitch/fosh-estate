@@ -6,7 +6,7 @@ import { getAllListings } from "@/sanity/lib/listings";
 export const metadata: Metadata = {
   title: "Properties",
   description:
-    "Explore current Fosh Estate land listings, prices, states, and inspection enquiry options.",
+    "Compare current Fosh Estate land listings, prices, locations, and inspection options before you make a buying decision.",
 };
 
 export const revalidate = 60;

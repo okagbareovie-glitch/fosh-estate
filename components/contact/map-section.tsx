@@ -8,16 +8,16 @@ export function MapSection() {
         <div className="mb-10 grid gap-5 lg:grid-cols-[0.85fr_1fr] lg:items-end">
           <div>
             <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-              Coverage map
+              Operating markets
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-[var(--navy)] md:text-5xl">
-              Operating across Nigeria’s active real estate corridors.
+              Focused on Rivers, FCT, and Ogun.
             </h2>
           </div>
           <p className="max-w-2xl text-base leading-7 text-[var(--muted)]">
-            The map highlights current operating markets. Exact estate
-            coordinates can be added when the client confirms approved site
-            locations and inspection meeting points.
+            The map highlights the markets Fosh Estate currently presents to
+            buyers. Exact estate pins and inspection meeting points can be
+            confirmed during enquiry.
           </p>
         </div>
 

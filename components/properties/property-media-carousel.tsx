@@ -91,7 +91,7 @@ export function PropertyMediaCarousel({ listing }: PropertyMediaCarouselProps) {
       <div className="mt-3 max-w-full overflow-hidden border border-[var(--line)] bg-white p-3 sm:mt-4">
         <div className="flex items-center justify-between gap-4 px-1">
           <p className="text-sm font-semibold text-[var(--navy)]">
-            Media gallery
+            Site media
           </p>
           <p className="text-xs font-medium text-[var(--muted)]">
             {activeIndex + 1} of {media.length}

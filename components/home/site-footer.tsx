@@ -19,8 +19,8 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-[var(--muted)]">
-            Secure land opportunities for families and investors building
-            long-term value in Nigeria.
+            Estate land opportunities for families and investors who want
+            clearer pricing, guided inspections, and long-term ownership value.
           </p>
         </div>
 
