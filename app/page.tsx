@@ -6,7 +6,6 @@ import {
   HeroSection,
   ServicesSection,
   SiteFooter,
-  SiteHeader,
   TrustStrip,
 } from "@/components/home";
 import { getFeaturedListings } from "@/sanity/lib/listings";
@@ -18,7 +17,6 @@ export default async function Home() {
 
   return (
     <>
-      <SiteHeader />
       <main>
         <HeroSection listings={listings} />
         <TrustStrip />
