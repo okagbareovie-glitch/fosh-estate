@@ -24,7 +24,7 @@ export function AmenitiesSection() {
       <style>{`
         .am-section {
           position: relative;
-          background: var(--navy, #000818);
+          background: var(--background, #f8f9ff);
           padding: clamp(80px, 10vw, 128px) 0;
           overflow: hidden;
         }
@@ -48,7 +48,7 @@ export function AmenitiesSection() {
           position: absolute;
           inset: 0;
           background-image: radial-gradient(
-            circle, rgba(109, 167, 255, 0.11) 1px, transparent 1px
+            circle, rgba(0, 116, 217, 0.09) 1px, transparent 1px
           );
           background-size: 28px 28px;
           pointer-events: none;
@@ -61,7 +61,7 @@ export function AmenitiesSection() {
           width: 560px; height: 560px;
           border-radius: 50%;
           background: radial-gradient(
-            circle, rgba(26, 107, 255, 0.15) 0%, transparent 68%
+            circle, rgba(26, 107, 255, 0.11) 0%, transparent 68%
           );
           pointer-events: none;
           z-index: 0;
@@ -73,7 +73,7 @@ export function AmenitiesSection() {
           width: 440px; height: 440px;
           border-radius: 50%;
           background: radial-gradient(
-            circle, rgba(201, 168, 76, 0.09) 0%, transparent 65%
+            circle, rgba(201, 168, 76, 0.12) 0%, transparent 65%
           );
           pointer-events: none;
           z-index: 0;
@@ -109,7 +109,7 @@ export function AmenitiesSection() {
           font-weight: 600;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(109, 167, 255, 0.9);
+          color: var(--blue, #005eb2);
           margin-bottom: 18px;
         }
 
@@ -119,21 +119,21 @@ export function AmenitiesSection() {
           font-weight: 700;
           line-height: 1.08;
           letter-spacing: -0.025em;
-          color: #fff;
+          color: var(--navy, #000818);
           margin: 0 0 22px;
           max-width: 380px;
         }
 
         .am-heading em {
           font-style: normal;
-          color: rgba(109, 167, 255, 0.85);
+          color: var(--blue, #005eb2);
         }
 
         .am-body {
           font-family: var(--font-sans);
           font-size: 15px;
           line-height: 1.78;
-          color: rgba(255, 255, 255, 0.52);
+          color: var(--muted, #526070);
           max-width: 330px;
           margin: 0 0 36px;
         }
@@ -143,17 +143,18 @@ export function AmenitiesSection() {
           align-items: baseline;
           gap: 14px;
           padding: 20px 26px;
-          border: 1px solid rgba(26, 107, 255, 0.22);
+          border: 1px solid rgba(26, 107, 255, 0.16);
           border-radius: 12px;
-          background: rgba(26, 107, 255, 0.07);
+          background: rgba(255, 255, 255, 0.82);
           backdrop-filter: blur(8px);
+          box-shadow: 0 18px 45px rgba(17, 28, 44, 0.08);
         }
 
         .am-stat-number {
           font-family: var(--font-display, sans-serif);
           font-size: 54px;
           font-weight: 800;
-          color: #fff;
+          color: var(--blue, #005eb2);
           letter-spacing: -0.04em;
           line-height: 1;
         }
@@ -162,7 +163,7 @@ export function AmenitiesSection() {
           font-family: var(--font-sans);
           font-size: 13px;
           font-weight: 500;
-          color: rgba(255, 255, 255, 0.42);
+          color: var(--muted, #526070);
           line-height: 1.45;
           max-width: 96px;
         }
