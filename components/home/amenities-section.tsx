@@ -228,12 +228,12 @@ export function AmenitiesSection() {
           transition:
             transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
             filter 0.42s ease;
-          filter: brightness(0.48) saturate(0.62);
+          filter: brightness(0.82) saturate(0.9);
         }
 
         .am-card:hover .am-card-img {
           transform: scale(1.06);
-          filter: brightness(0.4) saturate(0.68);
+          filter: brightness(0.74) saturate(0.96);
         }
 
         .am-card-overlay {
@@ -241,9 +241,9 @@ export function AmenitiesSection() {
           inset: 0;
           background: linear-gradient(
             to top,
-            rgba(0, 8, 24, 0.94) 0%,
-            rgba(0, 8, 24, 0.38) 50%,
-            transparent 100%
+            rgba(0, 8, 24, 0.74) 0%,
+            rgba(0, 8, 24, 0.28) 46%,
+            rgba(0, 8, 24, 0.04) 100%
           );
           pointer-events: none;
         }
