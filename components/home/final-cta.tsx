@@ -41,8 +41,21 @@ export function FinalCta() {
           background-image: url('/media/fosh-estate-hero.png');
           background-size: cover;
           background-position: center 60%;
-          opacity: 0.07;
+          opacity: 0.28;
           z-index: 0;
+        }
+
+        .final-cta-shade {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            105deg,
+            rgba(0, 8, 24, 0.9) 0%,
+            rgba(0, 8, 24, 0.78) 48%,
+            rgba(0, 8, 24, 0.58) 100%
+          );
+          z-index: 0;
+          pointer-events: none;
         }
 
         /* Blue glow - bottom left */
@@ -243,6 +256,7 @@ export function FinalCta() {
       `}</style>
 
       <div className="final-cta-bg" aria-hidden="true" />
+      <div className="final-cta-shade" aria-hidden="true" />
       <div className="final-cta-glow" aria-hidden="true" />
       <div className="final-cta-glow-gold" aria-hidden="true" />
 

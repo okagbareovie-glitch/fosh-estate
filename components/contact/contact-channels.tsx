@@ -1,6 +1,7 @@
-import { Camera, MapPinned, MessageCircle, Phone } from "lucide-react";
+import { MapPinned, MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { createTelUrl, createWhatsAppUrl } from "@/lib/format";
+import { InstagramIcon } from "@/components/ui/instagram-icon";
 
 const channels = [
   {
@@ -21,7 +22,7 @@ const channels = [
     title: "Instagram",
     detail: "Follow listing updates",
     href: siteConfig.instagram,
-    icon: Camera,
+    icon: InstagramIcon,
   },
   {
     title: "Coverage",

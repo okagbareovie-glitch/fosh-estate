@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Camera, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { createTelUrl } from "@/lib/format";
+import { InstagramIcon } from "@/components/ui/instagram-icon";
 
 export function SiteFooter() {
   return (
@@ -59,7 +60,7 @@ export function SiteFooter() {
               target="_blank"
               rel="noreferrer"
             >
-              <Camera aria-hidden size={16} />
+              <InstagramIcon className="h-4 w-4" />
               @foshestate
             </a>
             <a

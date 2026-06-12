@@ -12,7 +12,7 @@ const AREAS = [
     detail: "Active residential corridors around Port Harcourt and emerging estate zones.",
     image: "/media/rivers.png",
     accentColor: "#22c55e",
-    coords: "4.8156 N, 7.0498 E",
+    marketCue: "Port Harcourt residential growth",
   },
   {
     name: "FCT",
@@ -20,7 +20,7 @@ const AREAS = [
     detail: "Future-facing land demand across Abuja satellite towns and planned expansion areas.",
     image: "/media/FCT.png",
     accentColor: "#1a6bff",
-    coords: "9.0765 N, 7.3986 E",
+    marketCue: "Satellite-town expansion demand",
   },
   {
     name: "Ogun",
@@ -28,7 +28,7 @@ const AREAS = [
     detail: "Affordable estate land around growing residential and access-linked communities.",
     image: "/media/ogun.png",
     accentColor: "#c9a84c",
-    coords: "7.0000 N, 3.3500 E",
+    marketCue: "Affordable entry near growth corridors",
   },
 ];
 
@@ -113,19 +113,19 @@ export function AreasSection() {
           margin: 0 0 36px;
         }
 
-        .areas-coords-list {
+        .areas-cues-list {
           display: flex;
           flex-direction: column;
           gap: 10px;
         }
 
-        .areas-coord-item {
+        .areas-cue-item {
           display: flex;
           align-items: center;
           gap: 10px;
         }
 
-        .areas-coord-dot {
+        .areas-cue-dot {
           width: 8px;
           height: 8px;
           border-radius: 50%;
@@ -133,19 +133,19 @@ export function AreasSection() {
           border: 1.5px solid;
         }
 
-        .areas-coord-text {
-          font-size: 11px;
+        .areas-cue-text {
+          font-size: 12px;
           font-weight: 600;
-          letter-spacing: 0.1em;
-          font-variant-numeric: tabular-nums;
-          color: rgba(255, 255, 255, 0.28);
+          letter-spacing: 0.02em;
+          color: rgba(255, 255, 255, 0.38);
         }
 
-        .areas-coord-name {
+        .areas-cue-name {
           font-size: 11px;
           font-weight: 700;
           color: rgba(255, 255, 255, 0.5);
           letter-spacing: 0.06em;
+          text-transform: uppercase;
           margin-right: 6px;
         }
 
@@ -356,18 +356,21 @@ export function AreasSection() {
               communities continue to shape long-term land value.
             </p>
 
-            <div className="areas-coords-list" aria-hidden>
+            <div
+              className="areas-cues-list"
+              aria-label="Market focus by state"
+            >
               {AREAS.map((area) => (
-                <div key={area.name} className="areas-coord-item">
+                <div key={area.name} className="areas-cue-item">
                   <span
-                    className="areas-coord-dot"
+                    className="areas-cue-dot"
                     style={{
                       borderColor: area.accentColor,
                       background: `${area.accentColor}22`,
                     }}
                   />
-                  <span className="areas-coord-name">{area.name}</span>
-                  <span className="areas-coord-text">{area.coords}</span>
+                  <span className="areas-cue-name">{area.name}</span>
+                  <span className="areas-cue-text">{area.marketCue}</span>
                 </div>
               ))}
             </div>
