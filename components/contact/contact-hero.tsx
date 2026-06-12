@@ -5,7 +5,7 @@ export function ContactHero() {
   return (
     <section className="relative overflow-hidden bg-[var(--background)]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
-      <div className="container-page relative py-14 md:py-20 lg:py-24">
+      <div className="container-page relative pb-14 pt-32 md:pb-20 md:pt-32 lg:py-24">
         <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
           Contact Fosh Estate
         </p>

@@ -34,7 +34,7 @@ export function PropertyDetailHero({ listing }: { listing: Listing }) {
   return (
     <section className="relative overflow-hidden bg-[var(--background)]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
-      <div className="container-page relative py-10 md:py-14 lg:py-18">
+      <div className="container-page relative pb-10 pt-32 md:pb-14 md:pt-32 lg:py-18">
         <Link
           href="/properties"
           className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[var(--line)] bg-white px-4 text-sm font-semibold text-[var(--navy)] transition-colors duration-200 hover:border-[var(--blue)]"

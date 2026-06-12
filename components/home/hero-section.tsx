@@ -21,6 +21,8 @@ const FADE_IN = (delay = 0) => ({
   transition: { duration: 0.9, ease: "easeOut" as const, delay },
 });
 
+const MOBILE_HERO_IMAGE = "/media/fosh-estate-hero-mobile-generated.png";
+
 export function HeroSection({ listings }: { listings: Listing[] }) {
   const activeStates = getActiveStates(listings);
   const stateLabel =
@@ -59,6 +61,20 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
           pointer-events: none;
           animation: bloom-breathe 7s ease-in-out infinite;
           will-change: opacity, transform;
+        }
+
+        .fosh-hero-image {
+          object-fit: cover;
+        }
+
+        .fosh-hero-image--desktop {
+          display: block;
+          object-position: 64% center;
+        }
+
+        .fosh-hero-image--mobile {
+          display: none;
+          object-position: center center;
         }
 
         @keyframes bloom-breathe {
@@ -255,6 +271,14 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
         }
 
         @media (max-width: 640px) {
+          .fosh-hero-image--desktop {
+            display: none;
+          }
+
+          .fosh-hero-image--mobile {
+            display: block;
+          }
+
           .fosh-stats {
             gap: 24px;
           }
@@ -285,9 +309,17 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
         alt="Planned estate land with road access and green surroundings"
         fill
         priority
-        sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: "64% center" }}
+        sizes="(min-width: 641px) 100vw, 0px"
+        className="fosh-hero-image fosh-hero-image--desktop"
+      />
+
+      <Image
+        src={MOBILE_HERO_IMAGE}
+        alt="Planned estate land with road access and green surroundings"
+        fill
+        priority
+        sizes="(max-width: 640px) 100vw, 0px"
+        className="fosh-hero-image fosh-hero-image--mobile"
       />
 
       <div

@@ -14,7 +14,13 @@ export function AboutHero() {
           position: relative;
           background: var(--navy, #000818);
           overflow: hidden;
-          padding: clamp(64px, 9vw, 110px) 0;
+          padding: clamp(124px, 28vw, 148px) 0 clamp(64px, 9vw, 110px);
+        }
+
+        @media (min-width: 1024px) {
+          .about-hero-section {
+            padding: clamp(112px, 10vw, 132px) 0 clamp(64px, 9vw, 110px);
+          }
         }
 
         /* Dot-grid texture - land survey aesthetic */
