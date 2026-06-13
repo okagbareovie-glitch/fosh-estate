@@ -28,16 +28,123 @@ export function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="border border-[var(--line)] bg-white p-5 surface-shadow sm:p-7"
-    >
-      <div className="grid gap-5">
+    <form onSubmit={handleSubmit} className="cf-form">
+      <style>{`
+        .cf-form {
+          position: relative;
+          border-radius: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.02);
+          padding: 28px;
+        }
+
+        @media (min-width: 640px) {
+          .cf-form {
+            padding: 36px;
+          }
+        }
+
+        .cf-fields {
+          display: grid;
+          gap: 22px;
+        }
+
+        .cf-label {
+          display: block;
+          font-family: Inter, sans-serif;
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #fff;
+          margin-bottom: 10px;
+        }
+
+        .cf-input,
+        .cf-textarea {
+          width: 100%;
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.03);
+          font-family: Inter, sans-serif;
+          font-size: 1rem;
+          color: #fff;
+          transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .cf-input {
+          min-height: 52px;
+          padding: 0 16px;
+        }
+
+        .cf-textarea {
+          padding: 14px 16px;
+          line-height: 1.7;
+          resize: vertical;
+        }
+
+        .cf-input::placeholder,
+        .cf-textarea::placeholder {
+          color: rgba(255, 255, 255, 0.32);
+        }
+
+        .cf-input:focus,
+        .cf-textarea:focus {
+          outline: none;
+          border-color: #1A6BFF;
+          background: rgba(26, 107, 255, 0.06);
+          box-shadow: 0 0 0 3px rgba(26, 107, 255, 0.16);
+        }
+
+        /* Submit */
+        .cf-submit {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          min-height: 56px;
+          margin-top: 24px;
+          padding: 0 24px;
+          background: #1A6BFF;
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 1rem;
+          font-weight: 600;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .cf-submit:hover {
+          background: #2d7bff;
+        }
+
+        /* Status */
+        .cf-status {
+          margin-top: 16px;
+          min-height: 24px;
+          font-family: Inter, sans-serif;
+          font-size: 0.875rem;
+          line-height: 1.6;
+          color: rgba(109, 167, 255, 0.85);
+        }
+
+        .cf-status--ready {
+          color: #4ade80;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .cf-input,
+          .cf-textarea,
+          .cf-submit {
+            transition: none;
+          }
+        }
+      `}</style>
+
+      <div className="cf-fields">
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-semibold text-[var(--navy)]"
-          >
+          <label htmlFor="name" className="cf-label">
             Full name
           </label>
           <input
@@ -46,16 +153,13 @@ export function ContactForm() {
             type="text"
             required
             autoComplete="name"
-            className="mt-2 min-h-13 w-full rounded-md border border-[var(--line-strong)] bg-white px-4 text-base text-[var(--ink)] transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--blue)]"
+            className="cf-input"
             placeholder="Your name"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-semibold text-[var(--navy)]"
-          >
+          <label htmlFor="phone" className="cf-label">
             Phone number
           </label>
           <input
@@ -65,16 +169,13 @@ export function ContactForm() {
             required
             inputMode="tel"
             autoComplete="tel"
-            className="mt-2 min-h-13 w-full rounded-md border border-[var(--line-strong)] bg-white px-4 text-base text-[var(--ink)] transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--blue)]"
+            className="cf-input"
             placeholder="090..."
           />
         </div>
 
         <div>
-          <label
-            htmlFor="interest"
-            className="block text-sm font-semibold text-[var(--navy)]"
-          >
+          <label htmlFor="interest" className="cf-label">
             What would you like to confirm?
           </label>
           <textarea
@@ -82,22 +183,19 @@ export function ContactForm() {
             name="interest"
             required
             rows={5}
-            className="mt-2 w-full resize-y rounded-md border border-[var(--line-strong)] bg-white px-4 py-3 text-base leading-7 text-[var(--ink)] transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--blue)]"
+            className="cf-textarea"
             placeholder="Example: I want current land options in Ogun, price details, and the next inspection date."
           />
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="mt-6 inline-flex min-h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-6 text-base font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
-      >
+      <button type="submit" className="cf-submit">
         Prepare WhatsApp enquiry
         <Send aria-hidden size={18} />
       </button>
 
       <p
-        className="mt-4 min-h-6 text-sm leading-6 text-[var(--success)]"
+        className={`cf-status ${status === "ready" ? "cf-status--ready" : ""}`}
         aria-live="polite"
       >
         {status === "ready"

@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { ArrowRight, BadgeCheck, MapPinned, Search } from "lucide-react";
 import type { Listing } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
@@ -8,62 +11,334 @@ export function PropertiesHero({ listings }: { listings: Listing[] }) {
       ? Math.min(...listings.map((listing) => listing.price))
       : 0;
   const states = Array.from(
-    new Set(listings.map((listing) => listing.state).filter(Boolean))
+    new Set(listings.map((listing) => listing.state).filter(Boolean)),
   ).sort((firstLocation, secondLocation) =>
-    firstLocation.localeCompare(secondLocation)
+    firstLocation.localeCompare(secondLocation),
   );
   const stateSummary =
     states.length > 0 ? formatStateSummary(states) : "States pending";
 
   return (
-    <section className="relative overflow-hidden bg-[var(--background)]">
-      <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#e7eeff_0%,rgba(231,238,255,0)_100%)]" />
-      <div className="container-page relative pb-14 pt-32 md:pb-20 md:pt-32 lg:py-24">
-        <p className="font-[family-name:var(--font-label)] text-sm font-semibold text-[var(--blue)]">
-          Current land opportunities
-        </p>
-        <div className="mt-5 grid gap-9 lg:grid-cols-[1fr_420px] lg:items-end">
-          <div>
-            <h1 className="max-w-5xl font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[var(--navy)] sm:text-6xl lg:text-7xl">
-              Find the land option that fits your budget and next move.
+    <section className="properties-hero-section">
+      <style>{`
+        .properties-hero-section {
+          position: relative;
+          background: var(--navy, #000818);
+          overflow: hidden;
+          padding: clamp(120px, 14vw, 168px) 0 clamp(64px, 9vw, 96px);
+        }
+
+        /* Dot-grid texture - land survey aesthetic */
+        .properties-hero-dot-grid {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(
+            circle, rgba(109, 167, 255, 0.1) 1px, transparent 1px
+          );
+          background-size: 28px 28px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .properties-hero-glow {
+          position: absolute;
+          top: -120px; right: -100px;
+          width: 540px; height: 540px;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle, rgba(26, 107, 255, 0.16) 0%, transparent 68%
+          );
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .properties-hero-glow-gold {
+          position: absolute;
+          bottom: -100px; left: -80px;
+          width: 420px; height: 420px;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle, rgba(201, 168, 76, 0.08) 0%, transparent 65%
+          );
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .properties-hero-inner {
+          position: relative;
+          z-index: 1;
+        }
+
+        .properties-hero-rule {
+          display: block;
+          width: 32px;
+          height: 2px;
+          background: #C9A84C;
+          margin-bottom: 20px;
+        }
+
+        .properties-hero-eyebrow {
+          font-family: var(--font-label);
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(109, 167, 255, 0.9);
+          margin: 0 0 22px;
+        }
+
+        .properties-hero-grid {
+          display: grid;
+          gap: 40px;
+        }
+
+        @media (min-width: 1024px) {
+          .properties-hero-grid {
+            grid-template-columns: 1fr 420px;
+            gap: 56px;
+            align-items: end;
+          }
+        }
+
+        .properties-hero-heading {
+          font-family: var(--font-display);
+          font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+          font-weight: 700;
+          letter-spacing: -0.025em;
+          line-height: 1.07;
+          color: #fff;
+          margin: 0 0 24px;
+          max-width: 22ch;
+        }
+
+        .properties-hero-heading em {
+          font-style: normal;
+          color: #C9A84C;
+        }
+
+        .properties-hero-body {
+          font-family: Inter, sans-serif;
+          font-size: 1.0625rem;
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.55);
+          max-width: 50ch;
+          margin: 0;
+        }
+
+        /* Glass stat panel */
+        .properties-hero-panel {
+          position: relative;
+          border-radius: 14px;
+          border: 1px solid rgba(26, 107, 255, 0.2);
+          background: rgba(26, 107, 255, 0.05);
+          backdrop-filter: blur(10px);
+          padding: 28px;
+          overflow: hidden;
+        }
+
+        .properties-hero-panel-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-bottom: 22px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          margin-bottom: 22px;
+        }
+
+        .properties-hero-panel-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 9px;
+          background: rgba(26, 107, 255, 0.14);
+          border: 1px solid rgba(26, 107, 255, 0.3);
+          color: #6da7ff;
+          flex-shrink: 0;
+        }
+
+        .properties-hero-panel-title {
+          font-family: var(--font-display);
+          font-size: 1.25rem;
+          font-weight: 700;
+          letter-spacing: -0.015em;
+          color: #fff;
+          margin: 0;
+        }
+
+        /* Stat rows */
+        .properties-hero-stats {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          margin-bottom: 24px;
+        }
+
+        .properties-hero-stat {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 16px;
+          padding-bottom: 14px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .properties-hero-stat:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .properties-hero-stat-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-family: Inter, sans-serif;
+          font-size: 0.8125rem;
+          color: rgba(255, 255, 255, 0.45);
+        }
+
+        .properties-hero-stat-value {
+          font-family: var(--font-display);
+          font-size: clamp(1.125rem, 2vw, 1.5rem);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: #fff;
+          text-align: right;
+          white-space: nowrap;
+        }
+
+        /* CTA */
+        .properties-hero-cta {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          min-height: 52px;
+          padding: 0 24px;
+          background: #1A6BFF;
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 0.9375rem;
+          font-weight: 600;
+          border: none;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+
+        .properties-hero-cta:hover {
+          background: #2d7bff;
+        }
+
+        @media (max-width: 480px) {
+          .properties-hero-stat {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+          }
+
+          .properties-hero-stat-value {
+            text-align: left;
+            white-space: normal;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .properties-hero-section * {
+            transition: none !important;
+          }
+        }
+      `}</style>
+
+      <div className="properties-hero-dot-grid" aria-hidden="true" />
+      <div className="properties-hero-glow" aria-hidden="true" />
+      <div className="properties-hero-glow-gold" aria-hidden="true" />
+
+      <div className="properties-hero-inner container-page">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="properties-hero-rule" aria-hidden="true" />
+          <p className="properties-hero-eyebrow">Current land opportunities</p>
+        </motion.div>
+
+        <div className="properties-hero-grid">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="properties-hero-heading">
+              Find the land option that fits your <em>budget</em> and next
+              move.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
+            <p className="properties-hero-body">
               Review current Fosh Estate listings by state, address, price, and
               availability. When a land option looks right, request the latest
               details and book an inspection before making a payment decision.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="border border-[var(--line)] bg-white p-5 surface-shadow">
-            <div className="flex items-center gap-3 border-b border-[var(--line)] pb-5">
-              <Search aria-hidden className="text-[var(--blue)]" size={24} />
-              <p className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--navy)]">
-                Quick land brief
-              </p>
+          <motion.div
+            className="properties-hero-panel"
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="properties-hero-panel-header">
+              <span className="properties-hero-panel-icon" aria-hidden="true">
+                <Search size={18} />
+              </span>
+              <h2 className="properties-hero-panel-title">Quick land brief</h2>
             </div>
-            <div className="grid gap-4 py-5">
-              <HeroFact
-                icon={BadgeCheck}
-                label="Available listings"
-                value={`${listings.length} land options`}
-              />
-              <HeroFact icon={MapPinned} label="Prices from" value={formatNaira(lowestPrice)} />
-              <HeroFact
-                icon={MapPinned}
-                label="Current states"
-                value={stateSummary}
-              />
+
+            <div className="properties-hero-stats">
+              <div className="properties-hero-stat">
+                <span className="properties-hero-stat-label">
+                  <BadgeCheck aria-hidden size={15} />
+                  Available listings
+                </span>
+                <span className="properties-hero-stat-value">
+                  {listings.length} land options
+                </span>
+              </div>
+              <div className="properties-hero-stat">
+                <span className="properties-hero-stat-label">
+                  <MapPinned aria-hidden size={15} />
+                  Prices from
+                </span>
+                <span className="properties-hero-stat-value">
+                  {formatNaira(lowestPrice)}
+                </span>
+              </div>
+              <div className="properties-hero-stat">
+                <span className="properties-hero-stat-label">
+                  <MapPinned aria-hidden size={15} />
+                  Current states
+                </span>
+                <span className="properties-hero-stat-value">
+                  {stateSummary}
+                </span>
+              </div>
             </div>
+
             <a
               href={createWhatsAppUrl(
-                "Hello Fosh Estate, please send me the full property price list and inspection details."
+                "Hello Fosh Estate, please send me the full property price list and inspection details.",
               )}
-              className="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-md bg-[var(--navy)] px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--navy-2)]"
+              className="properties-hero-cta"
             >
               Request current land list
               <ArrowRight aria-hidden size={17} />
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -76,24 +351,4 @@ function formatStateSummary(states: string[]) {
   }
 
   return `${states.slice(0, 2).join(", ")} +${states.length - 2} more`;
-}
-
-function HeroFact({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof BadgeCheck;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex gap-3">
-      <Icon aria-hidden className="mt-1 shrink-0 text-[var(--blue)]" size={18} />
-      <div>
-        <p className="text-sm text-[var(--muted)]">{label}</p>
-        <p className="mt-1 font-semibold text-[var(--navy)]">{value}</p>
-      </div>
-    </div>
-  );
 }
