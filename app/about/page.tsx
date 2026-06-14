@@ -7,12 +7,14 @@ import {
   StorySection,
 } from "@/components/about";
 import { FinalCta, SiteFooter, SiteHeader } from "@/components/home";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Learn about Fosh Estate, a Nigerian real estate brand helping families and investors secure prime estate land with confidence.",
-};
+    "Learn how Fosh Estate helps Nigerian land buyers move with clarity, buyer guidance, and practical inspection support before payment.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

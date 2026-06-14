@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
+import {
+  defaultOgImage,
+  defaultSeo,
+  organizationJsonLd,
+  seoKeywords,
+  siteUrl,
+  websiteJsonLd,
+} from "@/lib/seo";
 
 const manrope = localFont({
   src: "../public/fonts/Manrope-Variable.ttf",
@@ -16,21 +24,62 @@ const fraunces = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.foshestate.com"),
+  metadataBase: new URL(siteUrl),
+  applicationName: "Fosh Estate",
+  authors: [{ name: "Fosh Estate", url: siteUrl }],
+  creator: "Fosh Estate",
+  publisher: "Fosh Estate",
+  category: "Real Estate",
+  keywords: seoKeywords,
   title: {
-    default: "Fosh Estate | Secure Land Investment in Nigeria",
+    default: defaultSeo.title,
     template: "%s | Fosh Estate",
   },
-  description:
-    "Fosh Estate helps families and investors secure prime estate land across Lagos, Port Harcourt, and Abuja.",
+  description: defaultSeo.description,
+  alternates: {
+    canonical: siteUrl,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Fosh Estate | Building Dreams. Creating Legacy.",
-    description:
-      "Explore secure, prime, and profitable estate land opportunities from Fosh Estate.",
-    url: "https://www.foshestate.com",
+    title: defaultSeo.title,
+    description: defaultSeo.description,
+    url: siteUrl,
     siteName: "Fosh Estate",
     locale: "en_NG",
     type: "website",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: "Fosh Estate secure land investment in Nigeria",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultSeo.title,
+    description: defaultSeo.description,
+    images: [defaultOgImage],
   },
 };
 
@@ -39,9 +88,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = [organizationJsonLd(), websiteJsonLd()];
+
   return (
     <html lang="en" className={cn("font-sans", manrope.variable, fraunces.variable)}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   AmenitiesSection,
   AreasSection,
@@ -9,8 +10,16 @@ import {
   TrustStrip,
 } from "@/components/home";
 import { getFeaturedListings } from "@/sanity/lib/listings";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = pageMetadata({
+  title: "Secure Land Investment in Nigeria",
+  description:
+    "Own estate land with clearer pricing, guided site inspections, and practical buyer support from Fosh Estate.",
+  path: "/",
+});
 
 export default async function Home() {
   const listings = await getFeaturedListings();

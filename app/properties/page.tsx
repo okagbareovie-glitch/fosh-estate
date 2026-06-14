@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { PropertiesHero, PropertiesListings, PropertiesTrust } from "@/components/properties";
 import { SiteFooter, SiteHeader } from "@/components/home";
 import { getAllListings } from "@/sanity/lib/listings";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Properties",
   description:
-    "Compare current Fosh Estate land listings, prices, locations, and inspection options before you make a buying decision.",
-};
+    "Compare current Fosh Estate land listings, prices, locations, media, and inspection options before you make a buying decision.",
+  path: "/properties",
+});
 
 export const revalidate = 60;
 

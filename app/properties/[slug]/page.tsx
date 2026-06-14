@@ -5,7 +5,7 @@ import {
   PropertyDetailSections,
 } from "@/components/properties/property-detail";
 import { SiteFooter, SiteHeader } from "@/components/home";
-import { formatNaira } from "@/lib/format";
+import { listingJsonLd, listingMetadata } from "@/lib/seo";
 import {
   getListingBySlug,
   getListingSlugs,
@@ -35,12 +35,7 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: listing.title,
-    description: `${listing.title} in ${listing.location}, listed from ${formatNaira(
-      listing.price
-    )}. Review land details, media, and inspection options with Fosh Estate.`,
-  };
+  return listingMetadata(listing);
 }
 
 export default async function PropertyDetailPage({
@@ -57,6 +52,12 @@ export default async function PropertyDetailPage({
     <>
       <SiteHeader />
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(listingJsonLd(listing)),
+          }}
+        />
         <PropertyDetailHero listing={listing} />
         <PropertyDetailSections listing={listing} />
       </main>
