@@ -7,15 +7,15 @@ import type { CSSProperties } from "react";
 
 const AREAS = [
   {
-    name: "Rivers",
-    subtitle: "Southern growth market",
-    detail: "Active residential corridors around Port Harcourt and emerging estate zones.",
-    image: "/media/rivers.png",
-    accentColor: "#22c55e",
-    marketCue: "Port Harcourt residential growth",
+    name: "Ogun",
+    subtitle: "Active estate corridor",
+    detail: "Affordable estate land around growing residential and access-linked communities.",
+    image: "/media/ogun.png",
+    accentColor: "#c9a84c",
+    marketCue: "Affordable entry near growth corridors",
   },
   {
-    name: "FCT",
+    name: "Abuja",
     subtitle: "Federal capital market",
     detail: "Future-facing land demand across Abuja satellite towns and planned expansion areas.",
     image: "/media/FCT.png",
@@ -23,12 +23,12 @@ const AREAS = [
     marketCue: "Satellite-town expansion demand",
   },
   {
-    name: "Ogun",
-    subtitle: "Active estate corridor",
-    detail: "Affordable estate land around growing residential and access-linked communities.",
-    image: "/media/ogun.png",
-    accentColor: "#c9a84c",
-    marketCue: "Affordable entry near growth corridors",
+    name: "Port Harcourt",
+    subtitle: "Southern growth market",
+    detail: "Active residential corridors around Port Harcourt and emerging estate zones.",
+    image: "/media/rivers.png",
+    accentColor: "#22c55e",
+    marketCue: "Port Harcourt residential growth",
   },
 ];
 

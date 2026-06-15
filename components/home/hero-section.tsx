@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import type { Listing } from "@/data/site";
 import { siteConfig } from "@/data/site";
 import { createWhatsAppUrl } from "@/lib/format";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
@@ -23,16 +22,7 @@ const FADE_IN = (delay = 0) => ({
 
 const MOBILE_HERO_IMAGE = "/media/fosh-estate-hero-mobile-generated.png";
 
-export function HeroSection({ listings }: { listings: Listing[] }) {
-  const activeStates = getActiveStates(listings);
-  const stateLabel =
-    activeStates.length > 0
-      ? `Active in ${formatStateList(activeStates)}`
-      : "Prime land across Nigeria";
-
-  const totalListings = listings.length;
-  const stateCount = activeStates.length || 3;
-
+export function HeroSection() {
   return (
     <section className="fosh-hero">
       <style>{`
@@ -357,12 +347,6 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
           paddingBottom: 0,
         }}
       >
-        <motion.span aria-hidden className="fosh-gold-rule" {...FADE_IN(0.1)} />
-
-        <motion.p className="fosh-eyebrow" {...FADE_IN(0.18)}>
-          {stateLabel}
-        </motion.p>
-
         <motion.h1
           className="fosh-headline"
           style={{ overflow: "visible" }}
@@ -405,18 +389,14 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
         <motion.div className="fosh-stats-bar" {...FADE_IN(0.72)}>
           <div className="fosh-stats">
             <div className="fosh-stat">
-              <span className="fosh-stat-value">
-                {totalListings > 0 ? `${totalListings}+` : "5+"}
-              </span>
+              <span className="fosh-stat-value">10+</span>
               <span className="fosh-stat-label">Active estates</span>
             </div>
 
             <div aria-hidden className="fosh-stat-divider" />
 
             <div className="fosh-stat">
-              <span className="fosh-stat-value">
-                {stateCount > 0 ? stateCount : 3}
-              </span>
+              <span className="fosh-stat-value">3</span>
               <span className="fosh-stat-label">States covered</span>
             </div>
 
@@ -449,32 +429,4 @@ export function HeroSection({ listings }: { listings: Listing[] }) {
       </div>
     </section>
   );
-}
-
-function getActiveStates(listings: Listing[]) {
-  return Array.from(
-    new Set(
-      listings
-        .map((listing) => listing.state.trim())
-        .filter(
-          (state) =>
-            state.length > 0 &&
-            state.toLowerCase() !== "location pending" &&
-            state.toLowerCase() !== "states pending",
-        ),
-    ),
-  ).sort((firstState, secondState) => firstState.localeCompare(secondState));
-}
-
-function formatStateList(states: string[]) {
-  const visibleStates = states.slice(0, 3);
-
-  if (visibleStates.length === 1) return visibleStates[0];
-  if (visibleStates.length === 2) return visibleStates.join(" & ");
-
-  const summary = `${visibleStates[0]}, ${visibleStates[1]} & ${visibleStates[2]}`;
-
-  return states.length > visibleStates.length
-    ? `${summary} +${states.length - visibleStates.length} more`
-    : summary;
 }

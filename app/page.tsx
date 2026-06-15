@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <>
       <main>
-        <HeroSection listings={listings} />
+        <HeroSection />
         <TrustStrip />
         <FeaturedListings listings={listings} />
         <AmenitiesSection />
