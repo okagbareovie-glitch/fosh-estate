@@ -55,3 +55,13 @@ export const listingSlugsQuery = defineQuery(`
     "slug": slug.current
   }
 `);
+
+export const stateCountQuery = defineQuery(`
+  count(*[_type == "state" && defined(name)])
+`);
+
+export const stateNamesQuery = defineQuery(`
+  *[_type == "state" && defined(name)] | order(name asc) {
+    name
+  }
+`);

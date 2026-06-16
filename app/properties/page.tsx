@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PropertiesHero, PropertiesListings, PropertiesTrust } from "@/components/properties";
 import { SiteFooter, SiteHeader } from "@/components/home";
-import { getAllListings } from "@/sanity/lib/listings";
+import { getAllListings, getStateNames } from "@/sanity/lib/listings";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -14,13 +14,16 @@ export const metadata: Metadata = pageMetadata({
 export const revalidate = 60;
 
 export default async function PropertiesPage() {
-  const listings = await getAllListings();
+  const [listings, stateNames] = await Promise.all([
+    getAllListings(),
+    getStateNames(),
+  ]);
 
   return (
     <>
       <SiteHeader />
       <main>
-        <PropertiesHero listings={listings} />
+        <PropertiesHero listings={listings} stateNames={stateNames} />
         <PropertiesListings listings={listings} />
         <PropertiesTrust />
       </main>

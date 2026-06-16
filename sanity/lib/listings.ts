@@ -1,12 +1,14 @@
 import type { Listing, ListingMedia, ListingStatus } from "@/data/site";
 import { featuredListings } from "@/data/site";
 import { hasSanityConfig } from "../env";
-import { client } from "./client";
+import { client, liveClient } from "./client";
 import {
   featuredListingsQuery,
   listingBySlugQuery,
   listingSlugsQuery,
   listingsQuery,
+  stateCountQuery,
+  stateNamesQuery,
 } from "./queries";
 import { urlForImage } from "./image";
 
@@ -215,5 +217,45 @@ export async function getListingSlugs(): Promise<{ slug: string }[]> {
       : featuredListings.map((listing) => ({ slug: listing.slug }));
   } catch {
     return featuredListings.map((listing) => ({ slug: listing.slug }));
+  }
+}
+
+export async function getStateCount(): Promise<number> {
+  const fallbackStateCount = new Set(
+    featuredListings.map((listing) => listing.state).filter(Boolean)
+  ).size;
+
+  if (!hasSanityConfig) {
+    return fallbackStateCount;
+  }
+
+  try {
+    return await liveClient.fetch<number>(stateCountQuery, {});
+  } catch {
+    return fallbackStateCount;
+  }
+}
+
+export async function getStateNames(): Promise<string[]> {
+  const fallbackStateNames = Array.from(
+    new Set(featuredListings.map((listing) => listing.state).filter(Boolean))
+  ).sort((firstState, secondState) => firstState.localeCompare(secondState));
+
+  if (!hasSanityConfig) {
+    return fallbackStateNames;
+  }
+
+  try {
+    const states = await liveClient.fetch<{ name?: string }[]>(
+      stateNamesQuery,
+      {}
+    );
+    const stateNames = states
+      .map((state) => state.name?.trim())
+      .filter((name): name is string => Boolean(name));
+
+    return stateNames.length > 0 ? stateNames : fallbackStateNames;
+  } catch {
+    return fallbackStateNames;
   }
 }

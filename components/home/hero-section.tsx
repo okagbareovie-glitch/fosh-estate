@@ -22,7 +22,13 @@ const FADE_IN = (delay = 0) => ({
 
 const MOBILE_HERO_IMAGE = "/media/fosh-estate-hero-mobile-generated.png";
 
-export function HeroSection() {
+type HeroSectionProps = {
+  statesCovered: number;
+};
+
+export function HeroSection({ statesCovered }: HeroSectionProps) {
+  const stateLabel = statesCovered === 1 ? "State covered" : "States covered";
+
   return (
     <section className="fosh-hero">
       <style>{`
@@ -396,8 +402,8 @@ export function HeroSection() {
             <div aria-hidden className="fosh-stat-divider" />
 
             <div className="fosh-stat">
-              <span className="fosh-stat-value">3</span>
-              <span className="fosh-stat-label">States covered</span>
+              <span className="fosh-stat-value">{statesCovered}</span>
+              <span className="fosh-stat-label">{stateLabel}</span>
             </div>
 
             <div aria-hidden className="fosh-stat-divider" />

@@ -5,16 +5,22 @@ import { ArrowRight, BadgeCheck, MapPinned, Search } from "lucide-react";
 import type { Listing } from "@/data/site";
 import { createWhatsAppUrl, formatNaira } from "@/lib/format";
 
-export function PropertiesHero({ listings }: { listings: Listing[] }) {
+type PropertiesHeroProps = {
+  listings: Listing[];
+  stateNames: string[];
+};
+
+export function PropertiesHero({ listings, stateNames }: PropertiesHeroProps) {
   const lowestPrice =
     listings.length > 0
       ? Math.min(...listings.map((listing) => listing.price))
       : 0;
-  const states = Array.from(
+  const listingStates = Array.from(
     new Set(listings.map((listing) => listing.state).filter(Boolean)),
   ).sort((firstLocation, secondLocation) =>
     firstLocation.localeCompare(secondLocation),
   );
+  const states = stateNames.length > 0 ? stateNames : listingStates;
   const stateSummary =
     states.length > 0 ? formatStateSummary(states) : "States pending";
 

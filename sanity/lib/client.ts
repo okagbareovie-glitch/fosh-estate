@@ -7,3 +7,7 @@ export const client = createClient({
   apiVersion,
   useCdn: true,
 });
+
+export const liveClient = client.withConfig({
+  useCdn: false,
+});

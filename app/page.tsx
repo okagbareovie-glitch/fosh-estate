@@ -9,7 +9,7 @@ import {
   SiteFooter,
   TrustStrip,
 } from "@/components/home";
-import { getFeaturedListings } from "@/sanity/lib/listings";
+import { getFeaturedListings, getStateCount } from "@/sanity/lib/listings";
 import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
@@ -22,12 +22,15 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function Home() {
-  const listings = await getFeaturedListings();
+  const [listings, stateCount] = await Promise.all([
+    getFeaturedListings(),
+    getStateCount(),
+  ]);
 
   return (
     <>
       <main>
-        <HeroSection />
+        <HeroSection statesCovered={stateCount} />
         <TrustStrip />
         <FeaturedListings listings={listings} />
         <AmenitiesSection />
