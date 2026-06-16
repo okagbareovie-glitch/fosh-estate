@@ -321,7 +321,7 @@ export function PropertiesHero({ listings, stateNames }: PropertiesHeroProps) {
                   Prices from
                 </span>
                 <span className="properties-hero-stat-value">
-                  {formatNaira(lowestPrice)}
+                  {listings.length > 0 ? formatNaira(lowestPrice) : "Pending"}
                 </span>
               </div>
               <div className="properties-hero-stat">

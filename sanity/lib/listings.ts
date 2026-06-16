@@ -157,10 +157,9 @@ export async function getAllListings(): Promise<Listing[]> {
 
   try {
     const listings = await client.fetch<SanityListing[]>(listingsQuery, {});
-    const mappedListings = mapListings(listings);
-    return mappedListings.length > 0 ? mappedListings : featuredListings;
+    return mapListings(listings);
   } catch {
-    return featuredListings;
+    return [];
   }
 }
 
@@ -174,10 +173,9 @@ export async function getFeaturedListings(): Promise<Listing[]> {
       featuredListingsQuery,
       {}
     );
-    const mappedListings = mapListings(listings);
-    return mappedListings.length > 0 ? mappedListings : featuredListings;
+    return mapListings(listings);
   } catch {
-    return featuredListings;
+    return [];
   }
 }
 
@@ -190,14 +188,9 @@ export async function getListingBySlug(slug: string): Promise<Listing | null> {
     const listing = await client.fetch<SanityListing | null>(listingBySlugQuery, {
       slug,
     });
-    const mappedListing = listing ? mapSanityListing(listing) : null;
-    return (
-      mappedListing ||
-      featuredListings.find((fallbackListing) => fallbackListing.slug === slug) ||
-      null
-    );
+    return listing ? mapSanityListing(listing) : null;
   } catch {
-    return featuredListings.find((listing) => listing.slug === slug) || null;
+    return null;
   }
 }
 
@@ -212,11 +205,9 @@ export async function getListingSlugs(): Promise<{ slug: string }[]> {
       (item): item is { slug: string } => typeof item.slug === "string"
     );
 
-    return validSlugs.length > 0
-      ? validSlugs
-      : featuredListings.map((listing) => ({ slug: listing.slug }));
+    return validSlugs;
   } catch {
-    return featuredListings.map((listing) => ({ slug: listing.slug }));
+    return [];
   }
 }
 
@@ -232,7 +223,7 @@ export async function getStateCount(): Promise<number> {
   try {
     return await liveClient.fetch<number>(stateCountQuery, {});
   } catch {
-    return fallbackStateCount;
+    return 0;
   }
 }
 
@@ -254,8 +245,8 @@ export async function getStateNames(): Promise<string[]> {
       .map((state) => state.name?.trim())
       .filter((name): name is string => Boolean(name));
 
-    return stateNames.length > 0 ? stateNames : fallbackStateNames;
+    return stateNames;
   } catch {
-    return fallbackStateNames;
+    return [];
   }
 }
