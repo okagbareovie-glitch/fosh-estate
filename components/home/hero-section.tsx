@@ -7,6 +7,7 @@ import { siteConfig } from "@/data/site";
 import { createWhatsAppUrl } from "@/lib/format";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { Navbar1 } from "@/components/ui/navbar-1";
+import type { HomepageContent } from "@/sanity/lib/homepage";
 
 const FADE_UP = (delay = 0) => ({
   initial: { opacity: 0, y: 22 },
@@ -23,10 +24,11 @@ const FADE_IN = (delay = 0) => ({
 const MOBILE_HERO_IMAGE = "/media/fosh-estate-hero-mobile-generated.png";
 
 type HeroSectionProps = {
+  content: HomepageContent;
   statesCovered: number;
 };
 
-export function HeroSection({ statesCovered }: HeroSectionProps) {
+export function HeroSection({ content, statesCovered }: HeroSectionProps) {
   const stateLabel = statesCovered === 1 ? "State covered" : "States covered";
 
   return (
@@ -372,9 +374,7 @@ export function HeroSection({ statesCovered }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p className="fosh-body-copy" {...FADE_UP(0.42)}>
-          Fosh Estate helps families and investors secure estate land with
-          transparent pricing, guided site inspections, and support at every
-          step before you commit a naira.
+          {content.heroSubtext}
         </motion.p>
 
         <motion.div className="fosh-cta-row" {...FADE_UP(0.54)}>
@@ -384,18 +384,20 @@ export function HeroSection({ statesCovered }: HeroSectionProps) {
             )}
             className="fosh-btn-primary"
           >
-            Book a site inspection
+            {content.heroPrimaryButtonText}
             <ArrowRight aria-hidden size={17} strokeWidth={2.5} />
           </a>
           <a href="#featured-listings" className="fosh-btn-ghost">
-            See current listings
+            {content.heroSecondaryButtonText}
           </a>
         </motion.div>
 
         <motion.div className="fosh-stats-bar" {...FADE_IN(0.72)}>
           <div className="fosh-stats">
             <div className="fosh-stat">
-              <span className="fosh-stat-value">10+</span>
+              <span className="fosh-stat-value">
+                {content.heroActiveEstatesValue}
+              </span>
               <span className="fosh-stat-label">Active estates</span>
             </div>
 

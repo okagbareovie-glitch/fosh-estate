@@ -65,3 +65,15 @@ export const stateNamesQuery = defineQuery(`
     name
   }
 `);
+
+export const homepageContentQuery = defineQuery(`
+  *[_type == "homepageContent" && _id == "homepageContent"][0] {
+    heroSubtext,
+    heroPrimaryButtonText,
+    heroSecondaryButtonText,
+    heroActiveEstatesValue,
+    finalCtaHeadingLine,
+    finalCtaHeadingEmphasis,
+    finalCtaBody
+  }
+`);

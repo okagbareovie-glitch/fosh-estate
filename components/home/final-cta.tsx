@@ -4,8 +4,22 @@ import { ArrowRight, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/data/site";
 import { createTelUrl, createWhatsAppUrl } from "@/lib/format";
+import type { HomepageContent } from "@/sanity/lib/homepage";
 
-export function FinalCta() {
+const fallbackContent = {
+  finalCtaHeadingLine: "Your plot is waiting.",
+  finalCtaHeadingEmphasis: "Speak to us today.",
+  finalCtaBody:
+    "Get current availability, pricing, payment plans, and title information directly from the Fosh Estate team. We inspect together, no guesswork, no middlemen.",
+} satisfies Pick<
+  HomepageContent,
+  "finalCtaHeadingLine" | "finalCtaHeadingEmphasis" | "finalCtaBody"
+>;
+
+export function FinalCta({ content = fallbackContent }: { content?: Pick<
+  HomepageContent,
+  "finalCtaHeadingLine" | "finalCtaHeadingEmphasis" | "finalCtaBody"
+> }) {
   return (
     <section className="final-cta-section">
       <style>{`
@@ -271,13 +285,12 @@ export function FinalCta() {
             <span className="final-cta-rule" aria-hidden="true" />
             <p className="final-cta-eyebrow">Ready to own land?</p>
             <h2 className="final-cta-headline">
-              Your plot is waiting.<br />
-              <em>Speak to us today.</em>
+              {content.finalCtaHeadingLine}
+              <br />
+              <em>{content.finalCtaHeadingEmphasis}</em>
             </h2>
             <p className="final-cta-body">
-              Get current availability, pricing, payment plans, and title information
-              directly from the Fosh Estate team. We inspect together, no guesswork,
-              no middlemen.
+              {content.finalCtaBody}
             </p>
           </motion.div>
 

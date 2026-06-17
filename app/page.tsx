@@ -9,6 +9,7 @@ import {
   SiteFooter,
   TrustStrip,
 } from "@/components/home";
+import { getHomepageContent } from "@/sanity/lib/homepage";
 import { getFeaturedListings, getStateCount } from "@/sanity/lib/listings";
 import { pageMetadata } from "@/lib/seo";
 
@@ -22,7 +23,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function Home() {
-  const [listings, stateCount] = await Promise.all([
+  const [homepageContent, listings, stateCount] = await Promise.all([
+    getHomepageContent(),
     getFeaturedListings(),
     getStateCount(),
   ]);
@@ -30,13 +32,13 @@ export default async function Home() {
   return (
     <>
       <main>
-        <HeroSection statesCovered={stateCount} />
+        <HeroSection content={homepageContent} statesCovered={stateCount} />
         <TrustStrip />
         <FeaturedListings listings={listings} />
         <AmenitiesSection />
         <AreasSection />
         <ServicesSection />
-        <FinalCta />
+        <FinalCta content={homepageContent} />
       </main>
       <SiteFooter />
     </>
