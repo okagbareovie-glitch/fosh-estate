@@ -133,6 +133,7 @@ export function FounderSection() {
 
         .founder-portrait-img {
           object-fit: cover;
+          object-position: center 18%;
         }
 
         .founder-portrait-fallback {
@@ -223,9 +224,8 @@ export function FounderSection() {
 
           <div className="founder-author">
             <div className="founder-portrait">
-              {/* Replace before launch - founder portrait */}
               <Image
-                src="/media/founder-placeholder.svg"
+                src="/media/founder-ovie.jpeg"
                 alt=""
                 aria-hidden
                 fill
