@@ -242,7 +242,7 @@ export function FounderSection() {
               />
             </div>
             <div className="founder-author-text">
-              <p className="founder-author-name">Fosh Estate</p>
+              <p className="founder-author-name">Ovieroghene Matthew Okagbare</p>
               <p className="founder-author-role">Founder &amp; Director</p>
             </div>
           </div>
